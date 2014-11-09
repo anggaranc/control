@@ -1,0 +1,41 @@
+.flash {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+.flash .flash-success {
+	margin: 0 auto;
+	display: table;
+	background-color: white;
+	padding: 2px 15px;
+	background-color: #dff0d8;
+	color: #468847;
+	-webkit-border-radius: 10px;
+}
+
+.flash .flash-success .highlight {
+	color: #468847;
+	font-weight: bold;	
+}
+
+.flash .flash-error {
+	margin: 0 auto;
+	display: table;
+	background-color: white;
+	padding: 2px 15px;
+	background-color: #f2dede;
+	color: #b94a48;
+	-webkit-border-radius: 10px;
+}
+
+.flash .flash-error .highlight {
+	color: #b94a48;
+	font-weight: bold;	
+}
+
+.flash .flash-space {
+	padding-left: 10px;
+}

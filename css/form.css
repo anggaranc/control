@@ -1,0 +1,87 @@
+div.form-label-50 label.control-label {
+	width: 50px;
+}
+
+div.form-label-50 .controls {
+	margin-left: 70px;
+}
+
+div.form-label-70 label.control-label {
+	width: 70px;
+}
+
+div.form-label-70 .controls {
+	margin-left: 90px;
+}
+
+div.form-label-90 label.control-label {
+	width: 90px;
+}
+
+div.form-label-90 .controls {
+	margin-left: 110px;
+}
+
+div.form-label-110 label.control-label {
+	width: 110px;
+}
+
+div.form-label-110 .controls {
+	margin-left: 130px;
+}
+
+div.form-label-130 label.control-label {
+	width: 130px;
+}
+
+div.form-label-130 .controls {
+	margin-left: 150px;
+}
+
+div.form-label-150 label.control-label {
+	width: 150px;
+}
+
+div.form-label-150 .controls {
+	margin-left: 170px;
+}
+
+div.form-label-170 .controls {
+	margin-left: 170px;
+}
+
+div.form-label-170 label.control-label {
+	width: 190px;
+}
+
+div.form-label-190 .controls {
+	margin-left: 190px;
+}
+
+div.form-label-190 label.control-label {
+	width: 210px;
+}
+
+div.form-label-210 .controls {
+	margin-left: 210px;
+}
+
+div.form-label-210 label.control-label {
+	width: 230px;
+}
+
+.errorMessage {
+	color: #b94a48;
+	background-color: #f2dede;
+	border: 1px solid #fbeed5;
+	padding: 3px 10px 3px 10px;
+	margin-top: 5px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+.errorMessage span.highlight {
+	font-weight: bold;
+	color: #b94a48;
+}

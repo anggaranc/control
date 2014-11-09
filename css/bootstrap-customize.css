@@ -1,0 +1,16 @@
+.control-label {
+	font-weight: normal;
+	white-space: nowrap;
+}
+
+.form-horizontal .control-label {
+	text-align: left;
+}
+
+.grid-view {
+	min-width: 450px;
+}
+
+.breadcrumb {
+    z-index: 999;
+}

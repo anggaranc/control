@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC
+	"-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>CDbException</title>
+
+<style type="text/css">
+/*<![CDATA[*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0;}
+body{line-height:1;}
+ol,ul{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:none;}
+:focus{outline:0;}
+ins{text-decoration:none;}
+del{text-decoration:line-through;}
+table{border-collapse:collapse;border-spacing:0;}
+
+body {
+	font: normal 9pt "Verdana";
+	color: #000;
+	background: #fff;
+}
+
+h1 {
+	font: normal 18pt "Verdana";
+	color: #f00;
+	margin-bottom: .5em;
+}
+
+h2 {
+	font: normal 14pt "Verdana";
+	color: #800000;
+	margin-bottom: .5em;
+}
+
+h3 {
+	font: bold 11pt "Verdana";
+}
+
+pre {
+	font: normal 11pt Menlo, Consolas, "Lucida Console", Monospace;
+}
+
+pre span.error {
+	display: block;
+	background: #fce3e3;
+}
+
+pre span.ln {
+	color: #999;
+	padding-right: 0.5em;
+	border-right: 1px solid #ccc;
+}
+
+pre span.error-ln {
+	font-weight: bold;
+}
+
+.container {
+	margin: 1em 4em;
+}
+
+.version {
+	color: gray;
+	font-size: 8pt;
+	border-top: 1px solid #aaa;
+	padding-top: 1em;
+	margin-bottom: 1em;
+}
+
+.message {
+	color: #000;
+	padding: 1em;
+	font-size: 11pt;
+	background: #f3f3f3;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-bottom: 1em;
+	line-height: 160%;
+}
+
+.source {
+	margin-bottom: 1em;
+}
+
+.code pre {
+	background-color: #ffe;
+	margin: 0.5em 0;
+	padding: 0.5em;
+	line-height: 125%;
+	border: 1px solid #eee;
+}
+
+.source .file {
+	margin-bottom: 1em;
+	font-weight: bold;
+}
+
+.traces {
+	margin: 2em 0;
+}
+
+.trace {
+	margin: 0.5em 0;
+	padding: 0.5em;
+}
+
+.trace.app {
+	border: 1px dashed #c00;
+}
+
+.trace .number {
+	text-align: right;
+	width: 2em;
+	padding: 0.5em;
+}
+
+.trace .content {
+	padding: 0.5em;
+}
+
+.trace .plus,
+.trace .minus {
+	display:inline;
+	vertical-align:middle;
+	text-align:center;
+	border:1px solid #000;
+	color:#000;
+	font-size:10px;
+	line-height:10px;
+	margin:0;
+	padding:0 1px;
+	width:10px;
+	height:10px;
+}
+
+.trace.collapsed .minus,
+.trace.expanded .plus,
+.trace.collapsed pre {
+	display: none;
+}
+
+.trace-file {
+	cursor: pointer;
+	padding: 0.2em;
+}
+
+.trace-file:hover {
+	background: #f0ffff;
+}
+/*]]>*/
+</style>
+</head>
+
+<body>
+<div class="container">
+	<h1>CDbException</h1>
+
+	<p class="message">
+		The table &quot;{{user}}&quot; for active record class &quot;User&quot; cannot be found in the database.	</p>
+
+	<div class="source">
+		<p class="file">C:\xampp\htdocs\repair-module\protected\framework\db\ar\CActiveRecord.php(2362)</p>
+		<div class="code"><pre><span class="ln">2350</span> 
+<span class="ln">2351</span>     /**
+<span class="ln">2352</span>      * Constructor.
+<span class="ln">2353</span>      * @param CActiveRecord $model the model instance
+<span class="ln">2354</span>      * @throws CDbException if specified table for active record class cannot be found in the database
+<span class="ln">2355</span>      */
+<span class="ln">2356</span>     public function __construct($model)
+<span class="ln">2357</span>     {
+<span class="ln">2358</span>         $this-&gt;_modelClassName=get_class($model);
+<span class="ln">2359</span> 
+<span class="ln">2360</span>         $tableName=$model-&gt;tableName();
+<span class="ln">2361</span>         if(($table=$model-&gt;getDbConnection()-&gt;getSchema()-&gt;getTable($tableName))===null)
+<span class="error"><span class="ln error-ln">2362</span>             throw new CDbException(Yii::t(&#039;yii&#039;,&#039;The table &quot;{table}&quot; for active record class &quot;{class}&quot; cannot be found in the database.&#039;,
+</span><span class="ln">2363</span>                 array(&#039;{class}&#039;=&gt;$this-&gt;_modelClassName,&#039;{table}&#039;=&gt;$tableName)));
+<span class="ln">2364</span>         if($table-&gt;primaryKey===null)
+<span class="ln">2365</span>         {
+<span class="ln">2366</span>             $table-&gt;primaryKey=$model-&gt;primaryKey();
+<span class="ln">2367</span>             if(is_string($table-&gt;primaryKey) &amp;&amp; isset($table-&gt;columns[$table-&gt;primaryKey]))
+<span class="ln">2368</span>                 $table-&gt;columns[$table-&gt;primaryKey]-&gt;isPrimaryKey=true;
+<span class="ln">2369</span>             elseif(is_array($table-&gt;primaryKey))
+<span class="ln">2370</span>             {
+<span class="ln">2371</span>                 foreach($table-&gt;primaryKey as $name)
+<span class="ln">2372</span>                 {
+<span class="ln">2373</span>                     if(isset($table-&gt;columns[$name]))
+<span class="ln">2374</span>                         $table-&gt;columns[$name]-&gt;isPrimaryKey=true;
+</pre></div>	</div>
+
+	<div class="traces">
+		<h2>Stack Trace</h2>
+				<table style="width:100%;">
+						<tr class="trace core collapsed">
+			<td class="number">
+				#0			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\db\ar\CActiveRecord.php(411): <strong>CActiveRecordMetaData</strong>-><strong>__construct</strong>(User)				</div>
+
+				<div class="code"><pre><span class="ln">406</span>     {
+<span class="ln">407</span>         $className=get_class($this);
+<span class="ln">408</span>         if(!array_key_exists($className,self::$_md))
+<span class="ln">409</span>         {
+<span class="ln">410</span>             self::$_md[$className]=null; // preventing recursive invokes of {@link getMetaData()} via {@link __get()}
+<span class="error"><span class="ln error-ln">411</span>             self::$_md[$className]=new CActiveRecordMetaData($this);
+</span><span class="ln">412</span>         }
+<span class="ln">413</span>         return self::$_md[$className];
+<span class="ln">414</span>     }
+<span class="ln">415</span> 
+<span class="ln">416</span>     /**
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#1			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\db\ar\CActiveRecord.php(658): <strong>CActiveRecord</strong>-><strong>getMetaData</strong>()				</div>
+
+				<div class="code"><pre><span class="ln">653</span>      * Returns the metadata of the table that this AR belongs to
+<span class="ln">654</span>      * @return CDbTableSchema the metadata of the table that this AR belongs to
+<span class="ln">655</span>      */
+<span class="ln">656</span>     public function getTableSchema()
+<span class="ln">657</span>     {
+<span class="error"><span class="ln error-ln">658</span>         return $this-&gt;getMetaData()-&gt;tableSchema;
+</span><span class="ln">659</span>     }
+<span class="ln">660</span> 
+<span class="ln">661</span>     /**
+<span class="ln">662</span>      * Returns the command builder used by this AR.
+<span class="ln">663</span>      * @return CDbCommandBuilder the command builder used by this AR
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#2			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\db\ar\CActiveRecord.php(1518): <strong>CActiveRecord</strong>-><strong>getTableSchema</strong>()				</div>
+
+				<div class="code"><pre><span class="ln">1513</span>      */
+<span class="ln">1514</span>     public function findByAttributes($attributes,$condition=&#039;&#039;,$params=array())
+<span class="ln">1515</span>     {
+<span class="ln">1516</span>         Yii::trace(get_class($this).&#039;.findByAttributes()&#039;,&#039;system.db.ar.CActiveRecord&#039;);
+<span class="ln">1517</span>         $prefix=$this-&gt;getTableAlias(true).&#039;.&#039;;
+<span class="error"><span class="ln error-ln">1518</span>         $criteria=$this-&gt;getCommandBuilder()-&gt;createColumnCriteria($this-&gt;getTableSchema(),$attributes,$condition,$params,$prefix);
+</span><span class="ln">1519</span>         return $this-&gt;query($criteria);
+<span class="ln">1520</span>     }
+<span class="ln">1521</span> 
+<span class="ln">1522</span>     /**
+<span class="ln">1523</span>      * Finds all active records that have the specified attribute values.
+</pre></div>			</td>
+		</tr>
+						<tr class="trace app expanded">
+			<td class="number">
+				#3			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\components\UserIdentity.php(21): <strong>CActiveRecord</strong>-><strong>findByAttributes</strong>(array(&quot;username&quot; =&gt; &quot;karunia&quot;))				</div>
+
+				<div class="code"><pre><span class="ln">16</span>      * against some persistent user identity storage (e.g. database).
+<span class="ln">17</span>      * @return boolean whether authentication succeeds.
+<span class="ln">18</span>      */
+<span class="ln">19</span>     public function authenticate()
+<span class="ln">20</span>     {
+<span class="error"><span class="ln error-ln">21</span>         $record = User::model()-&gt;findByAttributes(array(&#039;username&#039; =&gt; $this-&gt;username));
+</span><span class="ln">22</span>         
+<span class="ln">23</span>         if ($record === null) {
+<span class="ln">24</span>             $this-&gt;errorCode = self::ERROR_USERNAME_INVALID;
+<span class="ln">25</span>         }
+<span class="ln">26</span>         else if ($record-&gt;password !== crypt($this-&gt;password, $this-&gt;password)) {
+</pre></div>			</td>
+		</tr>
+						<tr class="trace app expanded">
+			<td class="number">
+				#4			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\models\LoginForm.php(52): <strong>UserIdentity</strong>-><strong>authenticate</strong>()				</div>
+
+				<div class="code"><pre><span class="ln">47</span>     public function authenticate($attribute,$params)
+<span class="ln">48</span>     {
+<span class="ln">49</span>         if(!$this-&gt;hasErrors())
+<span class="ln">50</span>         {
+<span class="ln">51</span>             $this-&gt;_identity=new UserIdentity($this-&gt;username,$this-&gt;password);
+<span class="error"><span class="ln error-ln">52</span>             if(!$this-&gt;_identity-&gt;authenticate())
+</span><span class="ln">53</span>                 $this-&gt;addError(&#039;password&#039;,&#039;Incorrect username or password.&#039;);
+<span class="ln">54</span>         }
+<span class="ln">55</span>     }
+<span class="ln">56</span> 
+<span class="ln">57</span>     /**
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#5			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\validators\CInlineValidator.php(42): <strong>LoginForm</strong>-><strong>authenticate</strong>(&quot;password&quot;, array())				</div>
+
+				<div class="code"><pre><span class="ln">37</span>      * @param string $attribute the attribute being validated
+<span class="ln">38</span>      */
+<span class="ln">39</span>     protected function validateAttribute($object,$attribute)
+<span class="ln">40</span>     {
+<span class="ln">41</span>         $method=$this-&gt;method;
+<span class="error"><span class="ln error-ln">42</span>         $object-&gt;$method($attribute,$this-&gt;params);
+</span><span class="ln">43</span>     }
+<span class="ln">44</span> 
+<span class="ln">45</span>     /**
+<span class="ln">46</span>      * Returns the JavaScript code needed to perform client-side validation by calling the {@link clientValidate} method.
+<span class="ln">47</span>      * In the client validation code, these variables are predefined:
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#6			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\validators\CValidator.php(213): <strong>CInlineValidator</strong>-><strong>validateAttribute</strong>(LoginForm, &quot;password&quot;)				</div>
+
+				<div class="code"><pre><span class="ln">208</span>         else
+<span class="ln">209</span>             $attributes=$this-&gt;attributes;
+<span class="ln">210</span>         foreach($attributes as $attribute)
+<span class="ln">211</span>         {
+<span class="ln">212</span>             if(!$this-&gt;skipOnError || !$object-&gt;hasErrors($attribute))
+<span class="error"><span class="ln error-ln">213</span>                 $this-&gt;validateAttribute($object,$attribute);
+</span><span class="ln">214</span>         }
+<span class="ln">215</span>     }
+<span class="ln">216</span> 
+<span class="ln">217</span>     /**
+<span class="ln">218</span>      * Returns the JavaScript needed for performing client-side validation.
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#7			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\base\CModel.php(159): <strong>CValidator</strong>-><strong>validate</strong>(LoginForm, null)				</div>
+
+				<div class="code"><pre><span class="ln">154</span>         if($clearErrors)
+<span class="ln">155</span>             $this-&gt;clearErrors();
+<span class="ln">156</span>         if($this-&gt;beforeValidate())
+<span class="ln">157</span>         {
+<span class="ln">158</span>             foreach($this-&gt;getValidators() as $validator)
+<span class="error"><span class="ln error-ln">159</span>                 $validator-&gt;validate($this,$attributes);
+</span><span class="ln">160</span>             $this-&gt;afterValidate();
+<span class="ln">161</span>             return !$this-&gt;hasErrors();
+<span class="ln">162</span>         }
+<span class="ln">163</span>         else
+<span class="ln">164</span>             return false;
+</pre></div>			</td>
+		</tr>
+						<tr class="trace app expanded">
+			<td class="number">
+				#8			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\controllers\SiteController.php(103): <strong>CModel</strong>-><strong>validate</strong>()				</div>
+
+				<div class="code"><pre><span class="ln">098</span>         // collect user input data
+<span class="ln">099</span>         if(isset($_POST[&#039;LoginForm&#039;]))
+<span class="ln">100</span>         {
+<span class="ln">101</span>             $model-&gt;attributes=$_POST[&#039;LoginForm&#039;];
+<span class="ln">102</span>             // validate user input and redirect to the previous page if valid
+<span class="error"><span class="ln error-ln">103</span>             if($model-&gt;validate() &amp;&amp; $model-&gt;login())
+</span><span class="ln">104</span>                 $this-&gt;redirect(Yii::app()-&gt;user-&gt;returnUrl);
+<span class="ln">105</span>         }
+<span class="ln">106</span>         // display the login form
+<span class="ln">107</span>         $this-&gt;render(&#039;login&#039;,array(&#039;model&#039;=&gt;$model));
+<span class="ln">108</span>     
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#9			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\web\actions\CInlineAction.php(49): <strong>SiteController</strong>-><strong>actionLogin</strong>()				</div>
+
+				<div class="code"><pre><span class="ln">44</span>         $controller=$this-&gt;getController();
+<span class="ln">45</span>         $method=new ReflectionMethod($controller, $methodName);
+<span class="ln">46</span>         if($method-&gt;getNumberOfParameters()&gt;0)
+<span class="ln">47</span>             return $this-&gt;runWithParamsInternal($controller, $method, $params);
+<span class="ln">48</span>         else
+<span class="error"><span class="ln error-ln">49</span>             return $controller-&gt;$methodName();
+</span><span class="ln">50</span>     }
+<span class="ln">51</span> 
+<span class="ln">52</span> }
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#10			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\web\CController.php(308): <strong>CInlineAction</strong>-><strong>runWithParams</strong>(array())				</div>
+
+				<div class="code"><pre><span class="ln">303</span>     {
+<span class="ln">304</span>         $priorAction=$this-&gt;_action;
+<span class="ln">305</span>         $this-&gt;_action=$action;
+<span class="ln">306</span>         if($this-&gt;beforeAction($action))
+<span class="ln">307</span>         {
+<span class="error"><span class="ln error-ln">308</span>             if($action-&gt;runWithParams($this-&gt;getActionParams())===false)
+</span><span class="ln">309</span>                 $this-&gt;invalidActionParams($action);
+<span class="ln">310</span>             else
+<span class="ln">311</span>                 $this-&gt;afterAction($action);
+<span class="ln">312</span>         }
+<span class="ln">313</span>         $this-&gt;_action=$priorAction;
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#11			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\web\CController.php(286): <strong>CController</strong>-><strong>runAction</strong>(CInlineAction)				</div>
+
+				<div class="code"><pre><span class="ln">281</span>      * @see runAction
+<span class="ln">282</span>      */
+<span class="ln">283</span>     public function runActionWithFilters($action,$filters)
+<span class="ln">284</span>     {
+<span class="ln">285</span>         if(empty($filters))
+<span class="error"><span class="ln error-ln">286</span>             $this-&gt;runAction($action);
+</span><span class="ln">287</span>         else
+<span class="ln">288</span>         {
+<span class="ln">289</span>             $priorAction=$this-&gt;_action;
+<span class="ln">290</span>             $this-&gt;_action=$action;
+<span class="ln">291</span>             CFilterChain::create($this,$action,$filters)-&gt;run();
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#12			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\web\CController.php(265): <strong>CController</strong>-><strong>runActionWithFilters</strong>(CInlineAction, array())				</div>
+
+				<div class="code"><pre><span class="ln">260</span>         {
+<span class="ln">261</span>             if(($parent=$this-&gt;getModule())===null)
+<span class="ln">262</span>                 $parent=Yii::app();
+<span class="ln">263</span>             if($parent-&gt;beforeControllerAction($this,$action))
+<span class="ln">264</span>             {
+<span class="error"><span class="ln error-ln">265</span>                 $this-&gt;runActionWithFilters($action,$this-&gt;filters());
+</span><span class="ln">266</span>                 $parent-&gt;afterControllerAction($this,$action);
+<span class="ln">267</span>             }
+<span class="ln">268</span>         }
+<span class="ln">269</span>         else
+<span class="ln">270</span>             $this-&gt;missingAction($actionID);
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#13			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\web\CWebApplication.php(282): <strong>CController</strong>-><strong>run</strong>(&quot;login&quot;)				</div>
+
+				<div class="code"><pre><span class="ln">277</span>         {
+<span class="ln">278</span>             list($controller,$actionID)=$ca;
+<span class="ln">279</span>             $oldController=$this-&gt;_controller;
+<span class="ln">280</span>             $this-&gt;_controller=$controller;
+<span class="ln">281</span>             $controller-&gt;init();
+<span class="error"><span class="ln error-ln">282</span>             $controller-&gt;run($actionID);
+</span><span class="ln">283</span>             $this-&gt;_controller=$oldController;
+<span class="ln">284</span>         }
+<span class="ln">285</span>         else
+<span class="ln">286</span>             throw new CHttpException(404,Yii::t(&#039;yii&#039;,&#039;Unable to resolve the request &quot;{route}&quot;.&#039;,
+<span class="ln">287</span>                 array(&#039;{route}&#039;=&gt;$route===&#039;&#039;?$this-&gt;defaultController:$route)));
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#14			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\web\CWebApplication.php(141): <strong>CWebApplication</strong>-><strong>runController</strong>(&quot;site/login&quot;)				</div>
+
+				<div class="code"><pre><span class="ln">136</span>             foreach(array_splice($this-&gt;catchAllRequest,1) as $name=&gt;$value)
+<span class="ln">137</span>                 $_GET[$name]=$value;
+<span class="ln">138</span>         }
+<span class="ln">139</span>         else
+<span class="ln">140</span>             $route=$this-&gt;getUrlManager()-&gt;parseUrl($this-&gt;getRequest());
+<span class="error"><span class="ln error-ln">141</span>         $this-&gt;runController($route);
+</span><span class="ln">142</span>     }
+<span class="ln">143</span> 
+<span class="ln">144</span>     /**
+<span class="ln">145</span>      * Registers the core application components.
+<span class="ln">146</span>      * This method overrides the parent implementation by registering additional core components.
+</pre></div>			</td>
+		</tr>
+						<tr class="trace core collapsed">
+			<td class="number">
+				#15			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\protected\framework\base\CApplication.php(180): <strong>CWebApplication</strong>-><strong>processRequest</strong>()				</div>
+
+				<div class="code"><pre><span class="ln">175</span>     public function run()
+<span class="ln">176</span>     {
+<span class="ln">177</span>         if($this-&gt;hasEventHandler(&#039;onBeginRequest&#039;))
+<span class="ln">178</span>             $this-&gt;onBeginRequest(new CEvent($this));
+<span class="ln">179</span>         register_shutdown_function(array($this,&#039;end&#039;),0,false);
+<span class="error"><span class="ln error-ln">180</span>         $this-&gt;processRequest();
+</span><span class="ln">181</span>         if($this-&gt;hasEventHandler(&#039;onEndRequest&#039;))
+<span class="ln">182</span>             $this-&gt;onEndRequest(new CEvent($this));
+<span class="ln">183</span>     }
+<span class="ln">184</span> 
+<span class="ln">185</span>     /**
+</pre></div>			</td>
+		</tr>
+						<tr class="trace app collapsed">
+			<td class="number">
+				#16			</td>
+			<td class="content">
+				<div class="trace-file">
+											<div class="plus">+</div>
+						<div class="minus">–</div>
+										&nbsp;C:\xampp\htdocs\repair-module\index-test.php(15): <strong>CApplication</strong>-><strong>run</strong>()				</div>
+
+				<div class="code"><pre><span class="ln">10</span> 
+<span class="ln">11</span> // remove the following line when in production mode
+<span class="ln">12</span> defined(&#039;YII_DEBUG&#039;) or define(&#039;YII_DEBUG&#039;,true);
+<span class="ln">13</span> 
+<span class="ln">14</span> require_once($yii);
+<span class="error"><span class="ln error-ln">15</span> Yii::createWebApplication($config)-&gt;run();
+</span></pre></div>			</td>
+		</tr>
+				</table>
+	</div>
+
+	<div class="version">
+		2014-04-26 05:18:40 Apache/2.4.3 (Win32) OpenSSL/1.0.1c PHP/5.4.7 <a href="http://www.yiiframework.com/">Yii Framework</a>/1.1.14	</div>
+</div>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+var traceReg = new RegExp("(^|\\s)trace-file(\\s|$)");
+var collapsedReg = new RegExp("(^|\\s)collapsed(\\s|$)");
+
+var e = document.getElementsByTagName("div");
+for(var j=0,len=e.length;j<len;j++){
+	if(traceReg.test(e[j].className)){
+		e[j].onclick = function(){
+			var trace = this.parentNode.parentNode;
+			if(collapsedReg.test(trace.className))
+				trace.className = trace.className.replace("collapsed", "expanded");
+			else
+				trace.className = trace.className.replace("expanded", "collapsed");
+		}
+	}
+}
+/*]]>*/
+</script>
+
+</body>
+</html>
