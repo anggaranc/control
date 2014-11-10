@@ -26,7 +26,6 @@
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/navbar.css" />
             <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="<?php echo Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('application.js') . '/flash.js');?>"></script>
-			
 		<?php // endif; ?>
 </head>
 	
