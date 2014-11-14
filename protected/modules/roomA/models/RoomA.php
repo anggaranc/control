@@ -90,6 +90,7 @@ class RoomA extends CActiveRecord
 		$criteria->compare('lampA2',$this->lampA2,true);
 		$criteria->compare('ldrA1',$this->ldrA1,true);
 		$criteria->compare('ldrA2',$this->ldrA2,true);
+                $criteria->compare('lampA1TimerStart',$this->lampA1TimerStart,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

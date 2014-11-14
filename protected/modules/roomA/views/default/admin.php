@@ -27,14 +27,13 @@ Yii::app()->clientScript->registerScript('', "");
     <div class="panel-body">
         <div class="col-md-6 row">
             <p class="col-md-12 text-center"><strong>LAMP 1</strong></p>
-            <input type="checkbox" id="lampA1" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampA1 != "on") echo "checked"; ?>>
+            <input type="checkbox" id="lampA1" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampA1 != "on") echo "checked readonly"; ?>>
             <div class="col-md-12 checkbox">
                 <label>
-                    <input type="checkbox" id="lamp1checked" <?php if($model->lampA1TimerStatus != "on") echo "checked"; ?>> Set Timer
+                    <input type="checkbox" id="lamp1checked" <?php if($model->lampA1TimerStatus != "off") {echo "checked"; }?>> Set Timer
                 </label>
             </div>
-            <?php if($model->lampA1TimerStatus != "on"){ ?>
-            <div class="row" id="lamp1">
+            <div class="row" id="lamp1" <?php if($model->lampA1TimerStatus != "on") echo 'style="display: none;"'; ?>>
                 <div class="col-md-3">
                     Start : 
                     <div class="input-group">
@@ -61,18 +60,16 @@ Yii::app()->clientScript->registerScript('', "");
                     </br>
                 </div>
               </div>
-            <?php } ?>
         </div>
         <div class="col-md-6 row">
             <p class="col-md-12 text-center"><strong>LAMP 2</strong></p>
-           <input type="checkbox" id="lampA2" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampA2 != "on") echo "checked"; ?>>
+           <input type="checkbox" id="lampA2" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampA2 != "on") echo "checked readonly"; ?>>
            <div class="col-md-12 checkbox">
                <label>
-                   <input type="checkbox" id="lamp2checked" <?php if($model->lampA2TimerStatus != "on") echo "checked"; ?>> Set Timer
+                   <input type="checkbox" id="lamp2checked" <?php if($model->lampA2TimerStatus != "off") echo "checked"; ?>> Set Timer
                </label>
            </div>
-           <?php if($model->lampA2TimerStatus != "on"){ ?>
-           <div class="row" id="lamp2">
+           <div class="row" id="lamp2" <?php if($model->lampA2TimerStatus != "on") echo 'style="display: none;"'; ?>>
                <div class="col-md-3">
                    Start : 
                    <div class="input-group">
@@ -99,7 +96,6 @@ Yii::app()->clientScript->registerScript('', "");
                     </br>
                </div>
              </div>
-           <?php } ?>
         </div>
     </div>
 </div>
