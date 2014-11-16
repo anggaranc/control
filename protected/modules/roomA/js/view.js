@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+
     $("#lampA1").bootstrapSwitch();
     $("#lampA2").bootstrapSwitch();
     
@@ -33,18 +33,21 @@ $(document).ready(function() {
         }
       });
       
-      $("#lamp1Start").DateTimePicker();
-      $("#lamp1Stop").DateTimePicker();
-      $("#lamp2Start").DateTimePicker();
-      $("#lamp2Stop").DateTimePicker();
+      $('.clockpicker').clockpicker({
+            autoclose: true,
+      });
       
-      $("#buttonLamp1").click(function(){
+      $("#buttonLamp1").on('click',function(){
            var lampA1TimerStart= $("input[name='lamp1TimerStart']").val();
            var lampA1TimerStop= $("input[name='lamp1TimerStop']").val();
-           
-           if(lamp1TimerStart != "" && lamp1TimerStop != ""){
+           if(lampA1TimerStart != "" && lampA1TimerStop != ""){
+                var $btn = $(this);
+                $btn.button('loading');
                 $.getJSON( webroot + '/roomA/lampA1Timer?start=' + lampA1TimerStart +'&stop='+  lampA1TimerStop, function(roomA){
                 });
+                setTimeout(function () {
+                    $btn.button('reset');
+                }, 1000);
            }
            else{
                alert("Please input timer");
@@ -54,9 +57,14 @@ $(document).ready(function() {
       $("#buttonLamp2").click(function(){
            var lampA2TimerStart= $("input[name='lamp2TimerStart']").val();
            var lampA2TimerStop= $("input[name='lamp2TimerStop']").val();
-           if(lamp2TimerStart != "" && lamp2TimerStop != ""){
-            $.getJSON( webroot + '/roomA/lampA2Timer?start=' + lampA2TimerStart +'&stop='+  lampA2TimerStop, function(roomA){
-            });
+           if(lampA2TimerStart != "" && lampA2TimerStop != ""){
+                var $btn = $(this);
+                $btn.button('loading');
+                $.getJSON( webroot + '/roomA/lampA2Timer?start=' + lampA2TimerStart +'&stop='+  lampA2TimerStop, function(roomA){
+                });
+                setTimeout(function () {
+                    $btn.button('reset');
+                }, 1000);
            }
            else{
                alert("Please input timer");
@@ -71,16 +79,14 @@ $(document).ready(function() {
             var status="on";
             $.getJSON( webroot + '/roomA/lampA1TimerStatus?data=' + status, function(roomA){
             });
-            $('#lampA1').prop('readonly', true);
-            $('.bootstrap-switch-id-lampA1').addClass('bootstrap-switch-readonly');
+            $("#lampA1").bootstrapSwitch('disabled',true);
         }
         else{
             $("#lamp1").hide();
             var status="off";
             $.getJSON( webroot + '/roomA/lampA1TimerStatus?data=' + status, function(roomA){
             });
-            $('#lampA1').prop('readonly', false);
-            $('.bootstrap-switch-id-lampA1').removeClass('bootstrap-switch-readonly');
+            $("#lampA1").bootstrapSwitch('disabled',false);
         }
    });
    
@@ -91,16 +97,18 @@ $(document).ready(function() {
             var status="on";
             $.getJSON( webroot + '/roomA/lampA2TimerStatus?data=' + status, function(roomA){
             });
-            $('#lampA1').prop('readonly', true);
-            $('.bootstrap-switch-id-lampA2').addClass('bootstrap-switch-readonly');
+            $("#lampA2").bootstrapSwitch('disabled',true);
         }
         else{
             $("#lamp2").hide();
             var status="off";
             $.getJSON( webroot + '/roomA/lampA2TimerStatus?data=' + status, function(roomA){
             });
-            $('#lampA1').prop('readonly', false);
-            $('.bootstrap-switch-id-lampA2').removeClass('bootstrap-switch-readonly');
+            $("#lampA2").bootstrapSwitch('disabled',false);
         }
    });
+
 });
+
+
+

@@ -116,10 +116,11 @@ class DefaultController extends Controller
             $lampA1TimerStart = $_GET['start'];
             $lampA1TimerStop = $_GET['stop'];
             
-            Yii::app()->db->createCommand()->update('tbl_room_a', array(
+            $a=Yii::app()->db->createCommand()->update('tbl_room_a', array(
                         'lampA1TimerStart'=>$lampA1TimerStart,
                         'lampA1TimerStop'=>$lampA1TimerStop
                         ), 'id=:id', array(':id'=>1));
+                var_dump($a);
             $return = array();
             $return = array(
                     'lampA1TimerStart'=>$lampA1TimerStart,

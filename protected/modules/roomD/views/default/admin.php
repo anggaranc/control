@@ -1,65 +1,98 @@
 <?php
 /* @var $this DefaultController */
-/* @var $model RoomD */
+/* @var $model RoomA */
 
 $this->breadcrumbs=array(
-	'Room Ds'=>array('index'),
-	'Manage',
+	'Room D',
 );
 
-$this->menu=array(
-	array('label'=>'List RoomD', 'url'=>array('index')),
-	array('label'=>'Create RoomD', 'url'=>array('create')),
-);
+$viewJs = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('application.modules.roomD.js') . '/view.js');
+Yii::app()->clientScript->registerScriptFile($viewJs, CClientScript::POS_BEGIN);
+Yii::app()->clientScript->registerScript('', "");
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#room-d-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
-<h1>Manage Room Ds</h1>
-
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'room-d-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'lampD1',
-		'lampD2',
-		'ldrD1',
-		'ldrD2',
-		'lampD1TimerStatus',
-		/*
-		'lampD1TimerStart',
-		'lampD1TimerStop',
-		'lampD2TimerStatus',
-		'lampD2TimerStart',
-		'lampD2TimerStop',
-		*/
-		array(
-			'class'=>'CButtonColumn',
-		),
-	),
-)); ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Status</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-6 row">
+            <p class="col-md-12 text-center"><strong>LAMP 1</strong></p>
+            <input type="checkbox" id="lampD1" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampD1 != "on") echo "checked";  if($model->lampD1TimerStatus == "on") echo " disabled";?>>
+            <div class="col-md-12 checkbox">
+                <label>
+                    <input type="checkbox" id="lamp1checked" <?php if($model->lampD1TimerStatus != "off") {echo "checked"; }?>> Set Timer
+                </label>
+            </div>
+            <div class="row" id="lamp1" <?php if($model->lampD1TimerStatus != "on") echo 'style="display: none;"'; ?>>
+                <div class="col-md-3">
+                    Start : 
+                        <div class="input-group clockpicker">
+                            <input type="text" class="form-control" name="lamp1TimerStart" value="<?php
+                            $D1Start = new DateTime($model->lampD1TimerStart);
+                            echo $D1Start->format("H:i");?>">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
+                </div>
+                <div class="col-md-3">
+                    Stop :
+                        <div class="input-group clockpicker">
+                            <input type="text" class="form-control" name="lamp1TimerStop" value="<?php
+                            $D1Stop = new DateTime($model->lampD1TimerStop);
+                            echo $D1Stop->format("H:i");?>">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
+                    </br>
+                    <div class="text-center">
+                        <button type="button" id="buttonLamp1" data-loading-text="Saving..." class="btn btn-primary">Save Timer</button>
+                    </div>
+                    </br>
+                </div>
+                
+              </div>
+        </div>
+        <div class="col-md-6 row">
+            <p class="col-md-12 text-center"><strong>LAMP 2</strong></p>
+           <input type="checkbox" id="lampD2" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampD2 != "on") echo "checked";  if($model->lampD2TimerStatus == "on") echo " disabled";?>>
+           <div class="col-md-12 checkbox">
+               <label>
+                   <input type="checkbox" id="lamp2checked" <?php if($model->lampD2TimerStatus != "off") echo "checked"; ?>> Set Timer
+               </label>
+           </div>
+           <div class="row" id="lamp2" <?php if($model->lampD2TimerStatus != "on") echo 'style="display: none;"'; ?>>
+               <div class="col-md-3">
+                   Start : 
+                   <div class="input-group clockpicker">
+                        <input type="text" class="form-control" name="lamp2TimerStart" value="<?php
+                        $D2Start = new DateTime($model->lampD2TimerStart);
+                        echo $D2Start->format("H:i");?>">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                    </div>
+               </div>
+               <div class="col-md-3">
+                   Stop :
+                    <div class="input-group clockpicker">
+                        <input type="text" class="form-control" name="lamp2TimerStop" value="<?php
+                        $D2Stop = new DateTime($model->lampD2TimerStop);
+                        echo $D2Stop->format("H:i");?>">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                    </div>
+                    </br>
+                    <div class="text-center">
+                        <button type="button" id="buttonLamp2" data-loading-text="Saving..." class="btn btn-primary">Save Timer</button>
+                    </div>
+                    </br>
+               </div>
+             </div>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,7 @@ class DefaultController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -28,7 +28,7 @@ class DefaultController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','lampD1','lampD2','json','lampD1TimerStatus','lampD2TimerStatus','lampD1Timer','lampD2Timer'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -45,6 +45,136 @@ class DefaultController extends Controller
 		);
 	}
 
+        
+        public function actionLampD1() {
+            $lampD1 = $_GET['data'];
+            Yii::app()->db->createCommand()
+                    ->update('tbl_room_d', array(
+                        'lampD1'=>$lampD1,
+                    ), 'id=:id', array(':id'=>1));
+
+            $return = array();
+            $return = array(
+                    'data'=>$lampD1,
+            );
+
+            header('Content-type: text/json');
+            header('Content-type: application/json');
+
+            echo CJSON::encode($return);
+        }
+        
+        public function actionLampD2() {
+            $lampD2 = $_GET['data'];
+            Yii::app()->db->createCommand()
+                    ->update('tbl_room_d', array(
+                        'lampD2'=>$lampD2,
+                    ), 'id=:id', array(':id'=>1));
+
+            $return = array();
+            $return = array(
+                    'data'=>$lampD2,
+            );
+
+            header('Content-type: text/json');
+            header('Content-type: application/json');
+
+            echo CJSON::encode($return);
+        }
+        
+        public function actionLampD1TimerStatus() {
+            $lampD1TimerStatus = $_GET['data'];
+            Yii::app()->db->createCommand()->update('tbl_room_d', array(
+                        'lampD1TimerStatus'=>$lampD1TimerStatus,
+                        ), 'id=:id', array(':id'=>1));
+            $return = array();
+            $return = array(
+                    'data'=>$lampD1TimerStatus,
+            );
+
+            header('Content-type: text/json');
+            header('Content-type: application/json');
+
+            echo CJSON::encode($return);
+        }
+        
+        public function actionLampD2TimerStatus() {
+            $lampD2TimerStatus = $_GET['data'];
+            Yii::app()->db->createCommand()->update('tbl_room_d', array(
+                        'lampD2TimerStatus'=>$lampD2TimerStatus,
+                        ), 'id=:id', array(':id'=>1));
+            $return = array();
+            $return = array(
+                    'data'=>$lampD2TimerStatus,
+            );
+
+            header('Content-type: text/json');
+            header('Content-type: application/json');
+
+            echo CJSON::encode($return);
+        }
+        public function actionLampD1Timer() {
+            $lampD1TimerStart = $_GET['start'];
+            $lampD1TimerStop = $_GET['stop'];
+            
+            Yii::app()->db->createCommand()->update('tbl_room_d', array(
+                        'lampD1TimerStart'=>$lampD1TimerStart,
+                        'lampD1TimerStop'=>$lampD1TimerStop
+                        ), 'id=:id', array(':id'=>1));
+            $return = array();
+            $return = array(
+                    'lampD1TimerStart'=>$lampD1TimerStart,
+                    'lampD1TimerStop'=> $lampD1TimerStop
+            );
+
+            header('Content-type: text/json');
+            header('Content-type: application/json');
+
+            echo CJSON::encode($return);
+        }
+        
+        public function actionLampD2Timer() {
+            $lampD2TimerStart = $_GET['start'];
+            $lampD2TimerStop = $_GET['stop'];
+            
+            Yii::app()->db->createCommand()->update('tbl_room_d', array(
+                        'lampD2TimerStart'=>$lampD2TimerStart,
+                        'lampD2TimerStop'=>$lampD2TimerStop
+                        ), 'id=:id', array(':id'=>1));
+            $return = array();
+            $return = array(
+                    'lampD2TimerStart'=>$lampD2TimerStart,
+                    'lampD2TimerStop'=> $lampD2TimerStop
+            );
+
+            header('Content-type: text/json');
+            header('Content-type: application/json');
+
+            echo CJSON::encode($return);
+        }
+        
+        
+        public function actionJson() {
+            $data = Yii::app()->db->createCommand()
+                ->select('*')
+                ->from('tbl_room_d a')
+		->where('id=:id', array(':id'=>1,))
+                ->queryAll();
+            $return = array();
+
+            foreach ($data as $dt) {
+                $return = array(
+                    'lampA1' => $dt['lampD1'],
+                    'lampA2' => $dt['lampD2'],
+                );
+            }
+
+            header('Content-type: text/json');
+            header('Content-type: application/json');
+
+            echo CJSON::encode($return);
+        }
+        
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -122,10 +252,7 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('RoomD');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		$this->actionAdmin();
 	}
 
 	/**
@@ -133,11 +260,14 @@ class DefaultController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new RoomD('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['RoomD']))
-			$model->attributes=$_GET['RoomD'];
+//		$model=new RoomD('search');
+//		$model->unsetAttributes();  // clear any default values
+//		if(isset($_GET['RoomD']))
+//			$model->attributes=$_GET['RoomD'];
 
+                $model = RoomD::model()->find('id=:id', array(
+                    ':id'=> 1
+                ));
 		$this->render('admin',array(
 			'model'=>$model,
 		));
