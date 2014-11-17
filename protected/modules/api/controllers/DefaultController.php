@@ -11,7 +11,7 @@ class DefaultController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','data', 'receive'),
+				'actions'=>array('index','view','data', 'receive','roomA','roomB','roomC','roomD','ldr'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -153,6 +153,54 @@ class DefaultController extends Controller
             $return = array(
                     'ldrD1'=>$ldrD1,
                     'ldrD2'=>$ldrD2
+            );
+
+            header('Content-type: text/json');
+            header('Content-type: application/json');
+
+            echo CJSON::encode($return);
+        }
+        
+        public function actionLdr() {
+            $ldrA1 = $_GET['ldrA1'];
+            $ldrA2 = $_GET['ldrA2'];
+            $ldrB1 = $_GET['ldrB1'];
+            $ldrB2 = $_GET['ldrB2'];
+            $ldrC1 = $_GET['ldrC1'];
+            $ldrC2 = $_GET['ldrC2'];
+            $ldrD1 = $_GET['ldrD1'];
+            $ldrD2 = $_GET['ldrD2'];
+            
+            Yii::app()->db->createCommand()->update('tbl_room_a', array(
+                        'ldrA1'=>$ldrA1,
+                        'ldrA2'=>$ldrA2
+                        ), 'id=:id', array(':id'=>1));
+            
+            Yii::app()->db->createCommand()->update('tbl_room_b', array(
+                        'ldrB1'=>$ldrB1,
+                        'ldrB2'=>$ldrB2
+                        ), 'id=:id', array(':id'=>1));
+            
+            Yii::app()->db->createCommand()->update('tbl_room_c', array(
+                        'ldrC1'=>$ldrC1,
+                        'ldrC2'=>$ldrC2
+                        ), 'id=:id', array(':id'=>1));
+            
+            Yii::app()->db->createCommand()->update('tbl_room_d', array(
+                        'ldrD1'=>$ldrD1,
+                        'ldrD2'=>$ldrD2
+                        ), 'id=:id', array(':id'=>1));
+            
+            $return = array();
+            $return = array(
+                    'ldrA1'=>$ldrA1,
+                    'ldrA2'=>$ldrA2,
+                    'ldrB1'=>$ldrB1,
+                    'ldrB2'=>$ldrB2,
+                    'ldrC1'=>$ldrC1,
+                    'ldrC2'=>$ldrC2,
+                    'ldrD1'=>$ldrD1,
+                    'ldrD2'=>$ldrD2,
             );
 
             header('Content-type: text/json');
