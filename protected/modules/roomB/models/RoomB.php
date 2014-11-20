@@ -18,6 +18,7 @@
  */
 class RoomB extends CActiveRecord
 {
+        const PRIVILEGE_ROOM = 'Room_B';
 	/**
 	 * @return string the associated database table name
 	 */

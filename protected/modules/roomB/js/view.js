@@ -45,10 +45,11 @@ $(document).ready(function() {
                 var $btn = $(this);
                 $btn.button('loading');
                 $.getJSON( webroot + '/roomB/lampB1Timer?start=' + lampB1TimerStart +'&stop='+  lampB1TimerStop, function(roomA){
+                    
+                    setTimeout(function () {
+                        $btn.button('reset');
+                    }, 1000);
                 });
-                setTimeout(function () {
-                    $btn.button('reset');
-                }, 1000);
            }
            else{
                alert("Please input timer");
@@ -62,10 +63,11 @@ $(document).ready(function() {
                 var $btn = $(this);
                 $btn.button('loading');
                 $.getJSON( webroot + '/roomB/lampB2Timer?start=' + lampB2TimerStart +'&stop='+  lampB2TimerStop, function(roomA){
+                    
+                    setTimeout(function () {
+                        $btn.button('reset');
+                    }, 1000);
                 });
-                setTimeout(function () {
-                    $btn.button('reset');
-                }, 1000);
            }
            else{
                alert("Please input timer");

@@ -26,21 +26,32 @@ class DefaultController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','lampA1','lampA2','json','lampA1TimerStatus','lampA2TimerStatus','lampA1Timer','lampA2Timer'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+//		return array(
+//			array('allow',  // allow all users to perform 'index' and 'view' actions
+//				'actions'=>array('index','view','lampA1','lampA2','json','lampA1TimerStatus','lampA2TimerStatus','lampA1Timer','lampA2Timer'),
+//				'users'=>array('*'),
+//			),
+//			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+//				'actions'=>array('create','update'),
+//				'users'=>array('@'),
+//			),
+//			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+//				'actions'=>array('admin','delete'),
+//				'users'=>array('admin'),
+//			),
+//			array('deny',  // deny all users
+//				'users'=>array('*'),
+//			),
+//		);
+                
+                return array(
+			array('allow',
+				'actions' => array('index','view','lampA1','lampA2','json','lampA1TimerStatus','lampA2TimerStatus','lampA1Timer','lampA2Timer'),
+				'users' => array('@'),
+				'roles' => array('Room_A'),
 			),
 			array('deny',  // deny all users
-				'users'=>array('*'),
+				'users' => array('*'),
 			),
 		);
 	}
@@ -120,7 +131,6 @@ class DefaultController extends Controller
                         'lampA1TimerStart'=>$lampA1TimerStart,
                         'lampA1TimerStop'=>$lampA1TimerStop
                         ), 'id=:id', array(':id'=>1));
-                var_dump($a);
             $return = array();
             $return = array(
                     'lampA1TimerStart'=>$lampA1TimerStart,

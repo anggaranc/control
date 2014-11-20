@@ -9,7 +9,7 @@
 
 
 	<!-- blueprint CSS framework -->
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<title><?php echo Yii::app()->name; ?></title>
 	<?php // if (!Yii::app()->user->isGuest): ?>
             <!--<link rel="shortcut icon" type="image/png" href=""/>-->
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
@@ -87,26 +87,36 @@ Yii::app()->clientScript->registerScript('jsconf',
 				<ul class="nav navbar-nav">
       				<li class="<?php echo $route === 'site/index' ? 'active' : ''; ?>"><a href="<?php echo Yii::app()->createUrl('/'); ?>">Home</a></li>
                                     <?php if (!Yii::app()->user->isGuest): ?>
-                                    <li class="dropdown <?php echo in_array($module, array('principal','principalBranch','supplier','brand','module','stock','servicePoint','engineer','rofp','ttbSupplier','doSupplier','doCustomer')) ? 'active' : ''; ?>">
+                                    <li class="dropdown <?php echo in_array($module, array('roomA','roomB','roomC','roomD')) ? 'active' : ''; ?>">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Room <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-
+                                                <?php if (isset($privileges[RoomA::PRIVILEGE_ROOM])): ?>
                                                 <li><a href="<?php echo Yii::app()->createUrl('roomA'); ?>">Room A</a></li>
+                                                <?php endif; ?>
+                                                <?php if (isset($privileges[RoomB::PRIVILEGE_ROOM])): ?>
                                                 <li><a href="<?php echo Yii::app()->createUrl('roomB'); ?>">Room B</a></li>
+                                                <?php endif; ?>
+                                                <?php if (isset($privileges[RoomC::PRIVILEGE_ROOM])): ?>
                                                 <li><a href="<?php echo Yii::app()->createUrl('roomC'); ?>">Room C</a></li>
+                                                <?php endif; ?>
+                                                <?php if (isset($privileges[RoomD::PRIVILEGE_ROOM])): ?>
                                                 <li><a href="<?php echo Yii::app()->createUrl('roomD'); ?>">Room D</a></li>
+                                                <?php endif; ?>
                                         </ul>
                                     </li>
+                                    <?php if (isset($privileges[User::PRIVILEGE_VIEW]) || isset($privileges[Log::PRIVILEGE_VIEW])): ?>
                                     <li class="dropdown <?php echo in_array($module, array('user','log')) ? 'active' : ''; ?>">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">System <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                                 <?php if (isset($privileges[User::PRIVILEGE_VIEW])): ?>
                                                 <li><a href="<?php echo Yii::app()->createUrl('user'); ?>">User</a></li>
                                                 <?php endif; ?>
-                                                <li class="divider"></li>
+                                                <?php if (isset($privileges[Log::PRIVILEGE_VIEW])): ?>
                                                 <li><a href="<?php echo Yii::app()->createUrl('log'); ?>"><?php echo Yii::t('Log', 'System Log'); ?></a></li>
+                                                <?php endif; ?>
                                         </ul>
                                     </li>
+                                    <?php endif; ?>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
                                     <li class="dropdown <?php echo in_array($module, array('logout')) ? 'active' : ''; ?>">

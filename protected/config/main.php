@@ -26,6 +26,7 @@ return array(
                 'application.modules.roomB.models.*',
                 'application.modules.roomC.models.*',
                 'application.modules.roomD.models.*',
+                'application.modules.log.models.*',
 	),
 
 	'modules'=>array(

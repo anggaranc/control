@@ -13,7 +13,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 <?php if (Yii::app()->user->isGuest): ?>
 </br>
 <div class="col-md-4 col-md-offset-4">
-<div class="panel panel-danger">
+<div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="text-center"><span class="glyphicon glyphicon-user"></span> Login to your account</h3>
 	</div>
@@ -52,7 +52,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 			  </div>
 			  <div class="form-group text-center">
 				<div class="">
-					<?php echo CHtml::submitButton('Login',array('class'=>'btn btn-lg btn-danger', 'id'=> 'login')); ?>
+					<?php echo CHtml::submitButton('Login',array('class'=>'btn btn-lg btn-primary', 'id'=> 'login')); ?>
 				</div>
 			  </div>
 			</form>
@@ -64,10 +64,10 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 </div>
 <?php endif; ?>
 <?php if (!Yii::app()->user->isGuest): ?>
-<div class="jumbotron alert alert-danger">
+<div class="jumbotron alert alert-info">
         <CENTER><h1 class="well">WELCOME</h1>
             <h1 class="well">HOME CONTROL</h1>
   
-  <p><a class="btn btn-danger btn-lg" href="" target="_blank" role="button"><span class="glyphicon glyphicon-road"></span></a></p></CENTER>
+  <p><a class="btn btn-primary btn-lg" href="" target="_blank" role="button"><span class="glyphicon glyphicon-road"></span></a></p></CENTER>
 </div>
 <?php endif; ?>

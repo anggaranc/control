@@ -1,7 +1,7 @@
 <?php
 /* @var $this DefaultController */
 /* @var $model RoomA */
-
+$this->pageTitle=Yii::app()->name . ' - Room C';
 $this->breadcrumbs=array(
 	'Room C',
 );
