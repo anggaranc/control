@@ -19,7 +19,7 @@ Yii::app()->clientScript->registerScript('', "");
     <div class="panel-body">
         <div class="col-md-6 row">
             <p class="col-md-12 text-center"><strong>LAMP 1</strong></p>
-            <input type="checkbox" id="lampC1" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampC1 != "on") echo "checked";  if($model->lampC1TimerStatus == "on") echo " disabled";?>>
+            <input type="checkbox" id="lampC1" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampC1 == "on") echo "checked";  if($model->lampC1TimerStatus == "on") echo " disabled";?>>
             <div class="col-md-12 checkbox">
                 <label>
                     <input type="checkbox" id="lamp1checked" <?php if($model->lampC1TimerStatus != "off") {echo "checked"; }?>> Set Timer
@@ -58,7 +58,7 @@ Yii::app()->clientScript->registerScript('', "");
         </div>
         <div class="col-md-6 row">
             <p class="col-md-12 text-center"><strong>LAMP 2</strong></p>
-           <input type="checkbox" id="lampC2" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampC2 != "on") echo "checked";  if($model->lampC2TimerStatus == "on") echo " disabled";?>>
+           <input type="checkbox" id="lampC2" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampC2 == "on") echo "checked";  if($model->lampC2TimerStatus == "on") echo " disabled";?>>
            <div class="col-md-12 checkbox">
                <label>
                    <input type="checkbox" id="lamp2checked" <?php if($model->lampC2TimerStatus != "off") echo "checked"; ?>> Set Timer

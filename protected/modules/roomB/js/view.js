@@ -5,13 +5,13 @@ $(document).ready(function() {
     
     $("#lampB1").on('switchChange.bootstrapSwitch', function(event, state) {
         if(state===true){
-            var lampB1="off";
+            var lampB1="on";
             $.getJSON( webroot + '/roomB/lampB1?data=' + lampB1, function(roomB){
 //                  alert(roomA.data);
             });
         }
         else{
-            var lampB1="on";
+            var lampB1="off";
             $.getJSON( webroot + '/roomB/lampB1?data=' + lampB1, function(roomB){
 //                  alert(roomA.data);
             });
@@ -20,13 +20,13 @@ $(document).ready(function() {
       
       $("#lampB2").on('switchChange.bootstrapSwitch', function(event, state) {
         if(state===true){
-            var lampB2="off";
+            var lampB2="on";
             $.getJSON( webroot + '/roomB/lampB2?data=' + lampB2, function(roomB){
 //                  alert(roomA.data);
             });
         }
         else{
-            var lampB2="on";
+            var lampB2="off";
             $.getJSON( webroot + '/roomB/lampB2?data=' + lampB2, function(roomB){
 //                  alert(roomA.data);
             });
