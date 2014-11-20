@@ -11,6 +11,7 @@ return array(
 	'sourceLanguage' => 'en',
 	'language' => 'en',
 	'defaultController' => 'site',
+        'timeZone'=>'GMT',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
