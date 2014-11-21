@@ -85,7 +85,7 @@ Yii::app()->clientScript->registerScript('jsconf',
 			<!-- Menu -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-      				<li class="<?php echo $route === 'site/index' ? 'active' : ''; ?>"><a href="<?php echo Yii::app()->baseUrl; ?>">Home</a></li>
+      				<li class="<?php echo $route === 'site/index' ? 'active' : ''; ?>"><a href="<?php echo Yii::app()->getBaseUrl(true);?>">Home</a></li>
                                     <?php if (!Yii::app()->user->isGuest): ?>
                                     <li class="dropdown <?php echo in_array($module, array('roomA','roomB','roomC','roomD')) ? 'active' : ''; ?>">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Room <span class="caret"></span></a>
