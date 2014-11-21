@@ -80,12 +80,12 @@ Yii::app()->clientScript->registerScript('jsconf',
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<?php echo Yii::app()->createUrl('/'); ?>"><?php echo Yii::app()->name; ?></a>
+				<a class="navbar-brand" href="<?php echo Yii::app()->request->baseUrl; ?>"><?php echo Yii::app()->name; ?></a>
 			</div>
 			<!-- Menu -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-      				<li class="<?php echo $route === 'site/index' ? 'active' : ''; ?>"><a href="<?php echo Yii::app()->createUrl('/'); ?>">Home</a></li>
+      				<li class="<?php echo $route === 'site/index' ? 'active' : ''; ?>"><a href="<?php echo Yii::app()->request->baseUrl; ?>">Home</a></li>
                                     <?php if (!Yii::app()->user->isGuest): ?>
                                     <li class="dropdown <?php echo in_array($module, array('roomA','roomB','roomC','roomD')) ? 'active' : ''; ?>">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Room <span class="caret"></span></a>
