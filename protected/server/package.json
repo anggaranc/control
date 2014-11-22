@@ -1,0 +1,9 @@
+{
+  "name": "timer",
+  "description": "Node server for timer home control",
+  "author": "Anggara Nur Cahyono <anggara.nc@gmail.com>",
+  "dependencies": {
+    "moment": "*",
+    "mysql": "*"
+  }
+}
