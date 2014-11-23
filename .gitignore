@@ -1,0 +1,6 @@
+
+.buildpath
+.settings/
+.project
+/protected/runtime/application.*
+/assets/*

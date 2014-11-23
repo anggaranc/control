@@ -11,7 +11,7 @@
 	<!-- blueprint CSS framework -->
 	<title><?php echo Yii::app()->name; ?></title>
 	<?php // if (!Yii::app()->user->isGuest): ?>
-            <!--<link rel="shortcut icon" type="image/png" href=""/>-->
+            <link rel="shortcut icon" type="image/png" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico"/>
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/space.css" />
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/pager.css" />
