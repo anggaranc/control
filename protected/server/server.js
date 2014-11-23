@@ -98,7 +98,6 @@ function dataGetRoomD(){
 }
 
 function timerRoomA(data){
-    console.log("a run");
     var now = time();
     if(data[0]["lampA1TimerStatus"]==="on"){
         var lampA1TimerStart = time(data[0]["lampA1TimerStart"],"H:m:s");
@@ -406,7 +405,6 @@ function timerRoomA(data){
 }
 
 function timerRoomB(data){
-    console.log("b run");
     var now = time();
     if(data[0]["lampB1TimerStatus"]==="on"){
         var lampB1TimerStart = time(data[0]["lampB1TimerStart"],"H:m:s");
