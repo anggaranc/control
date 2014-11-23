@@ -28,6 +28,7 @@ function dataGetRoomA(){
 		setTimeout(dataGetRoomA, 1000);
 		
 	});
+         
 //	connection.end();
 }
 function dataGetRoomB(){
