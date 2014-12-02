@@ -107,6 +107,7 @@ function timerRoomA(data){
         var totHour = lampA1TimerStop.hour()-lampA1TimerStart.hour();
         var totMinute = lampA1TimerStop.minute()-lampA1TimerStart.minute();
         if(totHour < 0){
+//            console.log("masuk a");
             if(now.hour() < lampA1TimerStart.hour() && now.hour() > lampA1TimerStop.hour()){
                 if(lampA1 !== "off"){
                     var post  = {'lampA1': 'off'};
@@ -173,6 +174,7 @@ function timerRoomA(data){
             }
         }
         else if(totHour == 0 && totMinute <= 0){
+//            console.log("masuk b");
             if(now.hour()==lampA1TimerStart.hour() && now.hour()==lampA1TimerStop.hour()){
                 if(now.minute() < lampA1TimerStart.minute() && now.minute() > lampA1TimerStop.minute()){
                     if(lampA1 !== "off"){
@@ -212,6 +214,7 @@ function timerRoomA(data){
             }
         }
         else{
+//            console.log("masuk c");
             if(now.hour() < lampA1TimerStart.hour()){
                 if(lampA1 !== "off"){
                     var post  = {'lampA1': 'off'};

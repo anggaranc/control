@@ -87,7 +87,7 @@ $(document).ready(function() {
         else{
             $("#lamp1").hide();
             var status="off";
-            $.getJSON( webroot + '/roomA/lampBTimerStatus?data=' + status, function(roomB){
+            $.getJSON( webroot + '/roomB/lampB1TimerStatus?data=' + status, function(roomB){
             });
             $("#lampB1").bootstrapSwitch('disabled',false);
         }
@@ -98,14 +98,14 @@ $(document).ready(function() {
         if(checkbox.prop('checked') == true){
             $("#lamp2").show();
             var status="on";
-            $.getJSON( webroot + '/roomA/lampB2TimerStatus?data=' + status, function(roomB){
+            $.getJSON( webroot + '/roomB/lampB2TimerStatus?data=' + status, function(roomB){
             });
             $("#lampB2").bootstrapSwitch('disabled',true);
         }
         else{
             $("#lamp2").hide();
             var status="off";
-            $.getJSON( webroot + '/roomA/lampB2TimerStatus?data=' + status, function(roomB){
+            $.getJSON( webroot + '/roomB/lampB2TimerStatus?data=' + status, function(roomB){
             });
             $("#lampB2").bootstrapSwitch('disabled',false);
         }
