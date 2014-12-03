@@ -12,6 +12,7 @@ function dataGetRoomA(){
 
 	connection.query('SELECT * FROM tbl_room_a WHERE `id`=1;', function(err, rows, field){
 		if(err) {
+			console.error("ternyata error");
 			connection.end();
 			console.error(err);
 			return;
