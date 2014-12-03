@@ -12,7 +12,8 @@ var connection  = mysql.createPool({
 	host	: "localhost",
 	user	: "root",
 	password: "",
-	database: "home"
+	database: "home",
+        multipleStatements: true
 });
 
 function dataGetRoomA(){
