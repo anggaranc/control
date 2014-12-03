@@ -9,12 +9,6 @@ var connection = mysql.createConnection({
 });
 
 function dataGetRoomA(){
-	connection.connect(function(err) {
-		if(err) {
-			console.log('error when connecting to db:', err);
-			setTimeout(dataGetRoomA, 2000);
-		}
-	});
 
 	connection.query('SELECT * FROM tbl_room_a WHERE `id`=1;', function(err, rows, field){
 		if(err) throw err;
@@ -32,15 +26,6 @@ function dataGetRoomA(){
       timerRoomA(array);
 		setTimeout(dataGetRoomA, 1000);
 
-	});
-
-	connection.on('error', function(err) {
-		console.log('db error', err);
-		if(err.code === 'PROTOCOL_CONNECTION_LOST') {
-			dataGetRoomA();
-		} else {
-			throw err;
-		}
 	});
 }
 function dataGetRoomB(){
