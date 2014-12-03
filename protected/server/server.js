@@ -11,7 +11,11 @@ var connection = mysql.createConnection({
 function dataGetRoomA(){
 
 	connection.query('SELECT * FROM tbl_room_a WHERE `id`=1;', function(err, rows, field){
-		if(err) throw err;
+		if(err) {
+			connection.end();
+			console.error(err);
+			return;
+		}
 		var array = [];
 		array.push({
 			"lampA1" : rows[0].lampA1,
