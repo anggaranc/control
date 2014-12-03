@@ -1,7 +1,14 @@
 var mysql = require("mysql");
 var time = require("moment");
 
-var connection = mysql.createConnection({
+//var connection = mysql.createConnection({
+//	host	: "localhost",
+//	user	: "root",
+//	password: "",
+//	database: "home"
+//});
+
+var connection  = mysql.createPool({
 	host	: "localhost",
 	user	: "root",
 	password: "",
@@ -28,7 +35,7 @@ function dataGetRoomA(){
                         "lampA2TimerStart" : rows[0].lampA2TimerStart,
                         "lampA2TimerStop" : rows[0].lampA2TImerStop
 			});
-      timerRoomA(array);
+                timerRoomA(array);
 		setTimeout(dataGetRoomA, 1000);
 
 	});
