@@ -12,7 +12,7 @@ function dataGetRoomA(){
 
 	connection.query('SELECT * FROM tbl_room_a WHERE `id`=1;', function(err, rows, field){
 		if(err) {
-			console.error("ternyata error");
+			console.error("ternyata error a");
 			connection.end();
 			console.error(err);
 			return;
@@ -36,7 +36,12 @@ function dataGetRoomA(){
 function dataGetRoomB(){
 //	connection.connect();
 	connection.query('SELECT * FROM tbl_room_b WHERE `id`=1;', function(err, rows, field){
-		if(err) throw err;
+		if(err) {
+			console.error("ternyata error b");
+			connection.end();
+			console.error(err);
+			return;
+		}
 		var array = [];
 		array.push({
 			"lampB1" : rows[0].lampB1,
@@ -58,7 +63,12 @@ function dataGetRoomB(){
 function dataGetRoomC(){
 //	connection.connect();
 	connection.query('SELECT * FROM tbl_room_c WHERE `id`=1;', function(err, rows, field){
-		if(err) throw err;
+		if(err) {
+			console.error("ternyata error c");
+			connection.end();
+			console.error(err);
+			return;
+		}
 		var array = [];
 		array.push({
 			"lampC1" : rows[0].lampC1,
@@ -80,7 +90,12 @@ function dataGetRoomC(){
 function dataGetRoomD(){
 //	connection.connect();
 	connection.query('SELECT * FROM tbl_room_d WHERE `id`=1;', function(err, rows, field){
-		if(err) throw err;
+		if(err) {
+			console.error("ternyata error d");
+			connection.end();
+			console.error(err);
+			return;
+		}
 		var array = [];
 		array.push({
 			"lampD1" : rows[0].lampD1,
