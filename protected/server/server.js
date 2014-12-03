@@ -1,20 +1,20 @@
 var mysql = require("mysql");
 var time = require("moment");
 
-//var connection = mysql.createConnection({
-//	host	: "localhost",
-//	user	: "root",
-//	password: "",
-//	database: "home"
-//});
-
-var connection  = mysql.createPool({
+var connection = mysql.createConnection({
 	host	: "localhost",
 	user	: "root",
 	password: "",
-	database: "home",
-        multipleStatements: true
+	database: "home"
 });
+
+//var connection  = mysql.createPool({
+//	host	: "localhost",
+//	user	: "root",
+//	password: "",
+//	database: "home",
+//        multipleStatements: true
+//});
 
 function dataGetRoom(){
     connection.query('SELECT * FROM tbl_room_a a JOIN tbl_room_b b on b.id=a.id JOIN tbl_room_c c on c.id=b.id JOIN tbl_room_d d on d.id=c.id WHERE a.`id`=1;', function(err, rows, fields) {
