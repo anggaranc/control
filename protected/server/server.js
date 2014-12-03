@@ -9,13 +9,19 @@ var connection = mysql.createConnection({
 });
 
 function dataGetRoomA(){
-//	connection.connect();
+	connection.connect(function(err) {
+		if(err) {
+			console.log('error when connecting to db:', err);
+			setTimeout(dataGetRoomA, 2000);
+		}
+	});
+
 	connection.query('SELECT * FROM tbl_room_a WHERE `id`=1;', function(err, rows, field){
 		if(err) throw err;
 		var array = [];
 		array.push({
-			"lampA1" : rows[0].lampA1, 
-			"lampA2" : rows[0].lampA2, 
+			"lampA1" : rows[0].lampA1,
+			"lampA2" : rows[0].lampA2,
 			"lampA1TimerStatus" : rows[0].lampA1TimerStatus,
                         "lampA1TimerStart" : rows[0].lampA1TimerStart,
                         "lampA1TimerStop" : rows[0].lampA1TimerStop,
@@ -23,13 +29,19 @@ function dataGetRoomA(){
                         "lampA2TimerStart" : rows[0].lampA2TimerStart,
                         "lampA2TimerStop" : rows[0].lampA2TImerStop
 			});
-//		console.log(array);
-                timerRoomA(array);
+      timerRoomA(array);
 		setTimeout(dataGetRoomA, 1000);
-		
+
 	});
-         
-//	connection.end();
+
+	connection.on('error', function(err) {
+		console.log('db error', err);
+		if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+			dataGetRoomA();
+		} else {
+			throw err;
+		}
+	});
 }
 function dataGetRoomB(){
 //	connection.connect();
@@ -37,8 +49,8 @@ function dataGetRoomB(){
 		if(err) throw err;
 		var array = [];
 		array.push({
-			"lampB1" : rows[0].lampB1, 
-			"lampB2" : rows[0].lampB2, 
+			"lampB1" : rows[0].lampB1,
+			"lampB2" : rows[0].lampB2,
 			"lampB1TimerStatus" : rows[0].lampB1TimerStatus,
                         "lampB1TimerStart" : rows[0].lampB1TimerStart,
                         "lampB1TimerStop" : rows[0].lampB1TimerStop,
@@ -49,7 +61,7 @@ function dataGetRoomB(){
 //		console.log(array);
                 timerRoomB(array);
 		setTimeout(dataGetRoomB, 1000);
-		
+
 	});
 //	connection.end();
 }
@@ -59,8 +71,8 @@ function dataGetRoomC(){
 		if(err) throw err;
 		var array = [];
 		array.push({
-			"lampC1" : rows[0].lampC1, 
-			"lampC2" : rows[0].lampC2, 
+			"lampC1" : rows[0].lampC1,
+			"lampC2" : rows[0].lampC2,
 			"lampC1TimerStatus" : rows[0].lampC1TimerStatus,
                         "lampC1TimerStart" : rows[0].lampC1TimerStart,
                         "lampC1TimerStop" : rows[0].lampC1TimerStop,
@@ -71,7 +83,7 @@ function dataGetRoomC(){
 //		console.log(array);
                 timerRoomC(array);
 		setTimeout(dataGetRoomC, 1000);
-		
+
 	});
 //	connection.end();
 }
@@ -81,8 +93,8 @@ function dataGetRoomD(){
 		if(err) throw err;
 		var array = [];
 		array.push({
-			"lampD1" : rows[0].lampD1, 
-			"lampD2" : rows[0].lampD2, 
+			"lampD1" : rows[0].lampD1,
+			"lampD2" : rows[0].lampD2,
 			"lampD1TimerStatus" : rows[0].lampD1TimerStatus,
                         "lampD1TimerStart" : rows[0].lampD1TimerStart,
                         "lampD1TimerStop" : rows[0].lampD1TimerStop,
@@ -93,7 +105,7 @@ function dataGetRoomD(){
 //		console.log(array);
                 timerRoomC(array);
 		setTimeout(dataGetRoomD, 1000);
-		
+
 	});
 //	connection.end();
 }
@@ -252,9 +264,9 @@ function timerRoomA(data){
                     });
                 }
             }
-        }    
+        }
     }
-    
+
     if(data[0]["lampA2TimerStatus"]==="on"){
         var lampA2TimerStart = time(data[0]["lampA2TimerStart"],"H:m:s");
         var lampA2TimerStop = time(data[0]["lampA2TimerStop"],"H:m:s");
@@ -404,7 +416,7 @@ function timerRoomA(data){
                     });
                 }
             }
-        }       
+        }
     }
 }
 
@@ -559,9 +571,9 @@ function timerRoomB(data){
                     });
                 }
             }
-        }    
+        }
     }
-    
+
     if(data[0]["lampB2TimerStatus"]==="on"){
         var lampB2TimerStart = time(data[0]["lampB2TimerStart"],"H:m:s");
         var lampB2TimerStop = time(data[0]["lampB2TimerStop"],"H:m:s");
@@ -711,7 +723,7 @@ function timerRoomB(data){
                     });
                 }
             }
-        }    
+        }
     }
 }
 
@@ -866,7 +878,7 @@ function timerRoomC(data){
                     });
                 }
             }
-        }    
+        }
     }
     if(data[0]["lampC2TimerStatus"]==="on"){
         var lampC2TimerStart = time(data[0]["lampC2TimerStart"],"H:m:s");
@@ -1017,7 +1029,7 @@ function timerRoomC(data){
                     });
                 }
             }
-        }    
+        }
     }
 }
 
@@ -1172,9 +1184,9 @@ function timerRoomD(data){
                     });
                 }
             }
-        }    
+        }
     }
-    
+
     if(data[0]["lampD2TimerStatus"]==="on"){
         var lampD2TimerStart = time(data[0]["lampD2TimerStart"],"H:m:s");
         var lampD2TimerStop = time(data[0]["lampD2TimerStop"],"H:m:s");
@@ -1324,7 +1336,7 @@ function timerRoomD(data){
                     });
                 }
             }
-        }    
+        }
     }
 }
 
