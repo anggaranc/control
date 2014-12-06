@@ -176,6 +176,8 @@ class DefaultController extends Controller
                 $return = array(
                     'lampA1' => $dt['lampA1'],
                     'lampA2' => $dt['lampA2'],
+                    'ldrA1' => $dt["ldrA1"],
+                    'ldrA2' => $dt["ldrA2"]
                 );
             }
 

@@ -110,6 +110,40 @@ $(document).ready(function() {
             $("#lampD2").bootstrapSwitch('disabled',false);
         }
    });
+   
+   
+   setInterval(refreshDiv, 10000); 
+   function refreshDiv(){
+    $.ajax({
+      url: webroot+"/roomD/json",
+      dataType: "json",
+      type: "get",
+      success: function(data){
+          if(data.ldrD1==="on"){
+              if ($(".ldr1.label-danger").length){
+                  $(".ldr1").toggleClass('label-danger label-success');
+              }
+          }
+          else{
+              if ($(".ldr1.label-success").length){
+                $(".ldr1").toggleClass('label-success label-danger');
+              }
+          }
+          
+          if(data.ldrD2==="on"){
+              if ($(".ldr2.label-danger").length){
+                  $(".ldr2").toggleClass('label-danger label-success');
+              }
+          }
+          else{
+              if ($(".ldr2.label-success").length){
+                $(".ldr2").toggleClass('label-success label-danger');
+              }
+          }
+          
+      }
+    });
+   }
 
 });
 

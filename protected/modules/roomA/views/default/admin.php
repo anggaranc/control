@@ -18,7 +18,7 @@ Yii::app()->clientScript->registerScript('', "");
     </div>
     <div class="panel-body">
         <div class="col-md-6 row">
-            <p class="col-md-12 text-center"><strong>LAMP 1</strong></p>
+            <p class="col-md-12 text-center"><span class='label label-success ldr1'>LAMP 1</span></p>
             <input type="checkbox" id="lampA1" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampA1 == "on") echo "checked";  if($model->lampA1TimerStatus == "on") echo " disabled";?>>
             <div class="col-md-12 checkbox">
                 <label>
@@ -57,7 +57,7 @@ Yii::app()->clientScript->registerScript('', "");
               </div>
         </div>
         <div class="col-md-6 row">
-            <p class="col-md-12 text-center"><strong>LAMP 2</strong></p>
+            <p class="col-md-12 text-center"><span class='label label-success ldr2'>LAMP 2</span></p>
            <input type="checkbox" id="lampA2" name="my-checkbox" data-size="large" data-on-color="success" data-off-color="danger" <?php if($model->lampA2 == "on") echo "checked";  if($model->lampA2TimerStatus == "on") echo " disabled";?>>
            <div class="col-md-12 checkbox">
                <label>

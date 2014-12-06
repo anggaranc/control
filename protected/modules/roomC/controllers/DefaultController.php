@@ -173,8 +173,10 @@ class DefaultController extends Controller
 
             foreach ($data as $dt) {
                 $return = array(
-                    'lampA1' => $dt['lampC1'],
-                    'lampA2' => $dt['lampC2'],
+                    'lampC1' => $dt['lampC1'],
+                    'lampC2' => $dt['lampC2'],
+                    'ldrC1' => $dt["ldrC1"],
+                    'ldrC2' => $dt["ldrC2"]
                 );
             }
 
