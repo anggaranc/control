@@ -191,17 +191,39 @@ class DefaultController extends Controller
                         'ldrD2'=>$ldrD2
                         ), 'id=:id', array(':id'=>1));
             
+            $sql='SELECT a.ldrA1, a.ldrA2, b.ldrB1, b.ldrB2, c.ldrC1, c.ldrC2, d.ldrD1, d.ldrD2
+                FROM tbl_room_a a
+                JOIN tbl_room_b b on b.id=a.id
+                JOIN tbl_room_c c on c.id=b.id
+                JOIN tbl_room_d d on d.id=c.id
+                WHERE a.`id`=1';
+            $data=Yii::app()->db->createCommand($sql)->queryAll();
             $return = array();
-            $return = array(
-                    'ldrA1'=>$ldrA1,
-                    'ldrA2'=>$ldrA2,
-                    'ldrB1'=>$ldrB1,
-                    'ldrB2'=>$ldrB2,
-                    'ldrC1'=>$ldrC1,
-                    'ldrC2'=>$ldrC2,
-                    'ldrD1'=>$ldrD1,
-                    'ldrD2'=>$ldrD2,
-            );
+
+            foreach ($data as $dt) {
+                $return = array(
+                    "ldrA1" => $dt['ldrA1'],
+                    "ldrA2" => $dt['ldrA2'],
+                    "ldrB1" => $dt['ldrB1'],
+                    "ldrB2" => $dt['ldrB2'],
+                    "ldrC1" => $dt['ldrC1'],
+                    "ldrC2" => $dt['ldrC2'],
+                    "ldrD1" => $dt['ldrD1'],
+                    "ldrD2" => $dt['ldrD2'],
+                );
+            }
+            
+//            $return = array();
+//            $return = array(
+//                    'ldrA1'=>$ldrA1,
+//                    'ldrA2'=>$ldrA2,
+//                    'ldrB1'=>$ldrB1,
+//                    'ldrB2'=>$ldrB2,
+//                    'ldrC1'=>$ldrC1,
+//                    'ldrC2'=>$ldrC2,
+//                    'ldrD1'=>$ldrD1,
+//                    'ldrD2'=>$ldrD2,
+//            );
 
             header('Content-type: text/json');
             header('Content-type: application/json');
