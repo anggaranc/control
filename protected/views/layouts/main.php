@@ -100,7 +100,7 @@ Yii::app()->clientScript->registerScript('jsconf',
                                                 <li><a href="<?php echo Yii::app()->createUrl('roomC'); ?>">Room C</a></li>
                                                 <?php endif; ?>
                                                 <?php if (isset($privileges[RoomD::PRIVILEGE_ROOM])): ?>
-                                                <li><a href="/roomD">Room D</a></li>
+                                                <li><a href="<?php echo Yii::app()->createUrl('roomD'); ?>">Room D</a></li>
                                                 <?php endif; ?>
                                         </ul>
                                     </li>
