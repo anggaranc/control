@@ -107,14 +107,14 @@ class DefaultController extends Controller {
 			try {
 				if($model->save()) {
                     
-                    $model->password = crypt($model->password, $model->password);
-                    $model->save();
+                                        $model->password = crypt($model->password, $model->password);
+                                        $model->save();
                     
 					if (isset($_POST['UserPrivilege'])) {
-						$auth = Yii::app()->authManager;
+                                            $auth = Yii::app()->authManager;
 
-						foreach ($privileges as $privilege)
-							$auth->assign($privilege['privilege'], $model->id);
+                                            foreach ($privileges as $privilege)
+                                                    $auth->assign($privilege['privilege'], $model->id);
 					}
 
 					Yii::log(Yii::app()->user->name . ": Create user " . $model->username, CLogger::LEVEL_INFO);

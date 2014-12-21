@@ -50,10 +50,13 @@ class LoginForm extends CFormModel
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
 			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect username or password.');
+                            if($this->_identity->errorCode===UserIdentity::ERROR_ENABLE){
+                                $this->addError('password','You not allowed access this account.');
+                            }
+                            else
+				$this->addError('password','Incorrect username or password.');    
 		}
 	}
-
 	/**
 	 * Logs in the user using the given username and password in the model.
 	 * @return boolean whether login is successful

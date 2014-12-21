@@ -26,6 +26,9 @@ class UserIdentity extends CUserIdentity {
 		else if ($record->password !== crypt($this->password, $this->password)) {
 			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		}
+                else if ($record->enable == "No") {
+			$this->errorCode = self::ERROR_ENABLE;
+		}
 		else {
 			$this->_id = $record->id;
 			
