@@ -88,31 +88,31 @@ Yii::app()->clientScript->registerScript('jsconf',
       				<li class="<?php echo $route === 'site/index' ? 'active' : ''; ?>"><a href="<?php echo Yii::app()->getBaseUrl(true); ?>">Home</a></li>
                                     <?php if (!Yii::app()->user->isGuest): ?>
                                     <li class="dropdown <?php echo in_array($module, array('roomA','roomB','roomC','roomD')) ? 'active' : ''; ?>">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Room <span class="caret"></span></a>
+                                        <a href="#" class="dropdown-toggle room" data-toggle="dropdown">Room <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                                 <?php if (isset($privileges[RoomA::PRIVILEGE_ROOM])): ?>
-                                                <li><a href="<?php echo Yii::app()->createUrl('roomA'); ?>">Room A</a></li>
+                                                <li><a class="roomA" href="<?php echo Yii::app()->createUrl('roomA'); ?>">Room A</a></li>
                                                 <?php endif; ?>
                                                 <?php if (isset($privileges[RoomB::PRIVILEGE_ROOM])): ?>
-                                                <li><a href="<?php echo Yii::app()->createUrl('roomB'); ?>">Room B</a></li>
+                                                <li><a class="roomB" href="<?php echo Yii::app()->createUrl('roomB'); ?>">Room B</a></li>
                                                 <?php endif; ?>
                                                 <?php if (isset($privileges[RoomC::PRIVILEGE_ROOM])): ?>
-                                                <li><a href="<?php echo Yii::app()->createUrl('roomC'); ?>">Room C</a></li>
+                                                <li><a class="roomC" href="<?php echo Yii::app()->createUrl('roomC'); ?>">Room C</a></li>
                                                 <?php endif; ?>
                                                 <?php if (isset($privileges[RoomD::PRIVILEGE_ROOM])): ?>
-                                                <li><a href="<?php echo Yii::app()->createUrl('roomD'); ?>">Room D</a></li>
+                                                <li><a class="roomD" href="<?php echo Yii::app()->createUrl('roomD'); ?>">Room D</a></li>
                                                 <?php endif; ?>
                                         </ul>
                                     </li>
                                     <?php if (isset($privileges[User::PRIVILEGE_VIEW]) || isset($privileges[Log::PRIVILEGE_VIEW])): ?>
                                     <li class="dropdown <?php echo in_array($module, array('user','log')) ? 'active' : ''; ?>">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">System <span class="caret"></span></a>
+                                        <a href="#" class="dropdown-toggle system" data-toggle="dropdown">System <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                                 <?php if (isset($privileges[User::PRIVILEGE_VIEW])): ?>
-                                                <li><a href="<?php echo Yii::app()->createUrl('user'); ?>">User</a></li>
+                                                <li><a class="user" href="<?php echo Yii::app()->createUrl('user'); ?>">User</a></li>
                                                 <?php endif; ?>
                                                 <?php if (isset($privileges[Log::PRIVILEGE_VIEW])): ?>
-                                                <li><a href="<?php echo Yii::app()->createUrl('log'); ?>"><?php echo Yii::t('Log', 'System Log'); ?></a></li>
+                                                <li><a class="log" href="<?php echo Yii::app()->createUrl('log'); ?>"><?php echo Yii::t('Log', 'System Log'); ?></a></li>
                                                 <?php endif; ?>
                                         </ul>
                                     </li>

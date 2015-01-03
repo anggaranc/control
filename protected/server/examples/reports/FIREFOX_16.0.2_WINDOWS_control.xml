@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="control"
+             errors="4"
+             failures="0"
+             tests="3">
+  
+  <testsuite errors="0" failures="0" hostname="" id=""
+    name="1. Akses Webside" package="control" skipped="0"
+    tests="1" time="" timestamp="">
+    
+    
+      <testcase name="Element &lt;body&gt; was present after 87 milliseconds.">
+        
+        
+      </testcase>
+    
+    
+      <system-err>
+        Unable to locate element: &quot;.roomA&quot; using: css selector
+Unable to locate element: &quot;.roomB&quot; using: css selector
+Unable to locate element: &quot;.roomC&quot; using: css selector
+Unable to locate element: &quot;.roomD&quot; using: css selector
+      </system-err>
+    
+    </testsuite>
+  
+  <testsuite errors="0" failures="0" hostname="" id=""
+    name="2. Login user Salah" package="control" skipped="0"
+    tests="1" time="" timestamp="">
+    
+    
+      <testcase name="Testing if element &lt;#LoginForm_password_em_&gt; contains text: &quot;Incorrect username or password.&quot;.">
+        
+        
+      </testcase>
+    
+    
+      <system-err>
+        Unable to locate element: &quot;.roomA&quot; using: css selector
+Unable to locate element: &quot;.roomB&quot; using: css selector
+Unable to locate element: &quot;.roomC&quot; using: css selector
+Unable to locate element: &quot;.roomD&quot; using: css selector
+      </system-err>
+    
+    </testsuite>
+  
+  <testsuite errors="0" failures="0" hostname="" id=""
+    name="3. Login user admin" package="control" skipped="0"
+    tests="1" time="" timestamp="">
+    
+    
+      <testcase name="Testing if element &lt;.well&gt; contains text: &quot;WELCOME&quot;.">
+        
+        
+      </testcase>
+    
+    
+      <system-err>
+        Unable to locate element: &quot;.roomA&quot; using: css selector
+Unable to locate element: &quot;.roomB&quot; using: css selector
+Unable to locate element: &quot;.roomC&quot; using: css selector
+Unable to locate element: &quot;.roomD&quot; using: css selector
+      </system-err>
+    
+    </testsuite>
+  
+  <testsuite errors="1" failures="0" hostname="" id=""
+    name="4. Room A" package="control" skipped="0"
+    tests="0" time="" timestamp="">
+    
+    
+    
+      <system-err>
+        Unable to locate element: &quot;.roomA&quot; using: css selector
+Unable to locate element: &quot;.roomB&quot; using: css selector
+Unable to locate element: &quot;.roomC&quot; using: css selector
+Unable to locate element: &quot;.roomD&quot; using: css selector
+      </system-err>
+    
+    </testsuite>
+  
+  <testsuite errors="1" failures="0" hostname="" id=""
+    name="5. Room B" package="control" skipped="0"
+    tests="0" time="" timestamp="">
+    
+    
+    
+      <system-err>
+        Unable to locate element: &quot;.roomA&quot; using: css selector
+Unable to locate element: &quot;.roomB&quot; using: css selector
+Unable to locate element: &quot;.roomC&quot; using: css selector
+Unable to locate element: &quot;.roomD&quot; using: css selector
+      </system-err>
+    
+    </testsuite>
+  
+  <testsuite errors="1" failures="0" hostname="" id=""
+    name="6. Room C" package="control" skipped="0"
+    tests="0" time="" timestamp="">
+    
+    
+    
+      <system-err>
+        Unable to locate element: &quot;.roomA&quot; using: css selector
+Unable to locate element: &quot;.roomB&quot; using: css selector
+Unable to locate element: &quot;.roomC&quot; using: css selector
+Unable to locate element: &quot;.roomD&quot; using: css selector
+      </system-err>
+    
+    </testsuite>
+  
+  <testsuite errors="1" failures="0" hostname="" id=""
+    name="7. Room D" package="control" skipped="0"
+    tests="0" time="" timestamp="">
+    
+    
+    
+      <system-err>
+        Unable to locate element: &quot;.roomA&quot; using: css selector
+Unable to locate element: &quot;.roomB&quot; using: css selector
+Unable to locate element: &quot;.roomC&quot; using: css selector
+Unable to locate element: &quot;.roomD&quot; using: css selector
+      </system-err>
+    
+    </testsuite>
+  
+</testsuites>
