@@ -31,23 +31,34 @@ module.exports = {
 	  .pause(1000)
 	  .assert.containsText('.well','WELCOME')
 	  .pause(1000)
-
   },
   '4. Room A' : function(client) {
 	client
+	  .click('.room')
 	  .click('.roomA')
+	  .pause(1000)
+	  .assert.containsText('ul.breadcrumb li.active','Room A')
   },
   '5. Room B' : function(client) {
 	client
+	  .click('.room')
 	  .click('.roomB')
+	  .pause(1000)
+	  .assert.containsText('ul.breadcrumb li.active','Room B')
   },
   '6. Room C' : function(client) {
 	client
+	  .click('.room')
 	  .click('.roomC')
+	  .pause(1000)
+	  .assert.containsText('ul.breadcrumb li.active','Room C')
   },
   '7. Room D' : function(client) {
 	client
+	  .click('.room')
 	  .click('.roomD')
+	  .pause(1000)
+	  .assert.containsText('ul.breadcrumb li.active','Room D')
       .end();
   },
   
