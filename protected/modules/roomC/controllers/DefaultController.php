@@ -57,11 +57,12 @@ class DefaultController extends Controller
 
         public function actionLampC1() {
             $lampC1 = $_GET['data'];
+						Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
             Yii::app()->db->createCommand()
                     ->update('tbl_room_c', array(
                         'lampC1'=>$lampC1,
                     ), 'id=:id', array(':id'=>1));
-
+						Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
             $return = array();
             $return = array(
                     'data'=>$lampC1,
@@ -72,14 +73,15 @@ class DefaultController extends Controller
 
             echo CJSON::encode($return);
         }
-        
+
         public function actionLampC2() {
             $lampC2 = $_GET['data'];
+						Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
             Yii::app()->db->createCommand()
                     ->update('tbl_room_c', array(
                         'lampC2'=>$lampC2,
                     ), 'id=:id', array(':id'=>1));
-
+						Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
             $return = array();
             $return = array(
                     'data'=>$lampC2,
@@ -90,12 +92,14 @@ class DefaultController extends Controller
 
             echo CJSON::encode($return);
         }
-        
+
         public function actionLampC1TimerStatus() {
             $lampC1TimerStatus = $_GET['data'];
+						Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
             Yii::app()->db->createCommand()->update('tbl_room_c', array(
                         'lampC1TimerStatus'=>$lampC1TimerStatus,
                         ), 'id=:id', array(':id'=>1));
+						Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
             $return = array();
             $return = array(
                     'data'=>$lampC1TimerStatus,
@@ -106,12 +110,14 @@ class DefaultController extends Controller
 
             echo CJSON::encode($return);
         }
-        
+
         public function actionLampC2TimerStatus() {
             $lampC2TimerStatus = $_GET['data'];
+						Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
             Yii::app()->db->createCommand()->update('tbl_room_c', array(
                         'lampC2TimerStatus'=>$lampC2TimerStatus,
                         ), 'id=:id', array(':id'=>1));
+						Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
             $return = array();
             $return = array(
                     'data'=>$lampC2TimerStatus,
@@ -125,11 +131,12 @@ class DefaultController extends Controller
         public function actionLampC1Timer() {
             $lampC1TimerStart = $_GET['start'];
             $lampC1TimerStop = $_GET['stop'];
-            
+						Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
             Yii::app()->db->createCommand()->update('tbl_room_c', array(
                         'lampC1TimerStart'=>$lampC1TimerStart,
                         'lampC1TimerStop'=>$lampC1TimerStop
                         ), 'id=:id', array(':id'=>1));
+						Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
             $return = array();
             $return = array(
                     'lampC1TimerStart'=>$lampC1TimerStart,
@@ -141,15 +148,16 @@ class DefaultController extends Controller
 
             echo CJSON::encode($return);
         }
-        
+
         public function actionLampC2Timer() {
             $lampC2TimerStart = $_GET['start'];
             $lampC2TimerStop = $_GET['stop'];
-            
+						Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
             Yii::app()->db->createCommand()->update('tbl_room_c', array(
                         'lampC2TimerStart'=>$lampC2TimerStart,
                         'lampC2TimerStop'=>$lampC2TimerStop
                         ), 'id=:id', array(':id'=>1));
+						Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
             $return = array();
             $return = array(
                     'lampC2TimerStart'=>$lampC2TimerStart,
@@ -161,8 +169,8 @@ class DefaultController extends Controller
 
             echo CJSON::encode($return);
         }
-        
-        
+
+
         public function actionJson() {
             $data = Yii::app()->db->createCommand()
                 ->select('*')
@@ -185,7 +193,7 @@ class DefaultController extends Controller
 
             echo CJSON::encode($return);
         }
-        
+
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
