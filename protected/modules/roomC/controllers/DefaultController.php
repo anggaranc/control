@@ -57,12 +57,18 @@ class DefaultController extends Controller
 
         public function actionLampC1() {
             $lampC1 = $_GET['data'];
-						Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
+            Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
             Yii::app()->db->createCommand()
                     ->update('tbl_room_c', array(
                         'lampC1'=>$lampC1,
                     ), 'id=:id', array(':id'=>1));
-						Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
+            if($lampC1=="off"){
+                Yii::app()->db->createCommand()
+                    ->update('tbl_room_c', array(
+                        'ldrC1'=>$lampC1,
+                    ), 'id=:id', array(':id'=>1));
+            }
+            Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
             $return = array();
             $return = array(
                     'data'=>$lampC1,
@@ -76,12 +82,18 @@ class DefaultController extends Controller
 
         public function actionLampC2() {
             $lampC2 = $_GET['data'];
-						Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
+            Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
             Yii::app()->db->createCommand()
                     ->update('tbl_room_c', array(
                         'lampC2'=>$lampC2,
                     ), 'id=:id', array(':id'=>1));
-						Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
+            if($lampC2=="off"){
+                Yii::app()->db->createCommand()
+                    ->update('tbl_room_c', array(
+                        'ldrC2'=>$lampC2,
+                    ), 'id=:id', array(':id'=>1));
+            }
+            Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
             $return = array();
             $return = array(
                     'data'=>$lampC2,
@@ -95,11 +107,11 @@ class DefaultController extends Controller
 
         public function actionLampC1TimerStatus() {
             $lampC1TimerStatus = $_GET['data'];
-						Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
+            Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
             Yii::app()->db->createCommand()->update('tbl_room_c', array(
                         'lampC1TimerStatus'=>$lampC1TimerStatus,
                         ), 'id=:id', array(':id'=>1));
-						Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
+            Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
             $return = array();
             $return = array(
                     'data'=>$lampC1TimerStatus,
@@ -113,11 +125,11 @@ class DefaultController extends Controller
 
         public function actionLampC2TimerStatus() {
             $lampC2TimerStatus = $_GET['data'];
-						Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
+            Yii::app()->db->createCommand("LOCK TABLES {{room_c}} WRITE")->execute();
             Yii::app()->db->createCommand()->update('tbl_room_c', array(
                         'lampC2TimerStatus'=>$lampC2TimerStatus,
                         ), 'id=:id', array(':id'=>1));
-						Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
+            Yii::app()->db->createCommand("UNLOCK TABLES")->execute();
             $return = array();
             $return = array(
                     'data'=>$lampC2TimerStatus,

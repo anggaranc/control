@@ -81,6 +81,7 @@ $(document).ready(function() {
             var status="on";
             $.getJSON( webroot + '/roomA/lampA1TimerStatus?data=' + status, function(roomA){
             });
+            $("#lampA1").bootstrapSwitch('state',false);
             $("#lampA1").bootstrapSwitch('disabled',true);
         }
         else{
@@ -99,6 +100,7 @@ $(document).ready(function() {
             var status="on";
             $.getJSON( webroot + '/roomA/lampA2TimerStatus?data=' + status, function(roomA){
             });
+            $("#lampA2").bootstrapSwitch('state',false);
             $("#lampA2").bootstrapSwitch('disabled',true);
         }
         else{
@@ -111,7 +113,7 @@ $(document).ready(function() {
    });
    
  
-   setInterval(refreshDiv, 10000); 
+   setInterval(refreshDiv, 3000); 
    function refreshDiv(){
     $.ajax({
       url: webroot+"/roomA/json",
