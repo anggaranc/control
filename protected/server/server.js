@@ -193,7 +193,6 @@ function timerRoomA(data){
             }
         }
         else{
-//            console.log("masuk c");
             if(now.hour() < lampA1TimerStart.hour()){
                 if(lampA1 !== "off"){
                     var post  = {'lampA1': 'off'};
@@ -202,27 +201,63 @@ function timerRoomA(data){
                 }
             }
             else if(now.hour() >= lampA1TimerStart.hour() && now.hour() <= lampA1TimerStop.hour()){
-                if(now.minute() >= lampA1TimerStart.minute() && now.minute() < lampA1TimerStop.minute()){
-                    if(lampA1 !== "on"){
-                        var post  = {lampA1: 'on'};
-                        connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() < lampA1TimerStart.minute()){
-                    if(lampA1 !== "off"){
-                        var post  = {lampA1: 'off'};
-                        connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() >= lampA1TimerStop.minute()){
-                    if(lampA1 !== "off"){
-                        var post  = {lampA1: 'off'};
-                        connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
+				if(now.hour() <= lampA1TimerStop.hour()){
+					if(now.hour() == lampA1TimerStart.hour() && lampA1TimerStop.hour()==lampA1TimerStart.hour()){
+						if(now.minute() >= lampA1TimerStart.minute() && now.minute() < lampA1TimerStop.minute()){
+							if(lampA1 !== "on"){
+								var post  = {lampA1: 'on'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampA1TimerStop.minute()){
+							if(lampA1 !== "off"){
+								var post  = {lampA1: 'off'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() == lampA1TimerStart.hour() && lampA1TimerStop.hour()-lampA1TimerStart.hour()==1){
+						if(now.minute()>= lampA1TimerStart.minute()){
+							if(lampA1 !== "on"){
+								var post  = {lampA1: 'on'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.hour()==lampA1TimerStop.hour() && now.minute() >= lampA1TimerStop.minute()){
+							if(lampA1 !== "off"){
+								var post  = {lampA1: 'off'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() < lampA1TimerStop.hour()){
+						if(lampA1 !== "on"){
+							var post  = {lampA1: 'on'};
+							connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+							});
+						}
+					}
+					else if(now.hour()==lampA1TimerStop.hour()){
+						if(now.minute()< lampA1TimerStop.minute()){
+							if(lampA1 !== "on"){
+								var post  = {lampA1: 'on'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampA1TimerStop.minute()){
+							if(lampA1 !== "off"){
+								var post  = {lampA1: 'off'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+				}
             }
             else if(now.hour() > lampA1TimerStop.hour()){
                 if(lampA1 !== "off"){
@@ -354,27 +389,63 @@ function timerRoomA(data){
                 }
             }
             else if(now.hour() >= lampA2TimerStart.hour() && now.hour() <= lampA2TimerStop.hour()){
-                if(now.minute() >= lampA2TimerStart.minute() && now.minute() < lampA2TimerStop.minute()){
-                    if(lampA2 !== "on"){
-                        var post  = {lampA2: 'on'};
-                        connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() < lampA2TimerStart.minute()){
-                    if(lampA2 !== "off"){
-                        var post  = {lampA2: 'off'};
-                        connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() >= lampA2TimerStop.minute()){
-                    if(lampA2 !== "off"){
-                        var post  = {lampA2: 'off'};
-                        connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
+                if(now.hour() <= lampA2TimerStop.hour()){
+					if(now.hour() == lampA2TimerStart.hour() && lampA2TimerStop.hour()==lampA2TimerStart.hour()){
+						if(now.minute() >= lampA2TimerStart.minute() && now.minute() < lampA2TimerStop.minute()){
+							if(lampA2 !== "on"){
+								var post  = {lampA2: 'on'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampA2TimerStop.minute()){
+							if(lampA2 !== "off"){
+								var post  = {lampA2: 'off'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() == lampA2TimerStart.hour() && lampA2TimerStop.hour()-lampA2TimerStart.hour()==1){
+						if(now.minute()>= lampA2TimerStart.minute()){
+							if(lampA2 !== "on"){
+								var post  = {lampA2: 'on'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.hour()==lampA2TimerStop.hour() && now.minute() >= lampA2TimerStop.minute()){
+							if(lampA2 !== "off"){
+								var post  = {lampA2: 'off'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() < lampA2TimerStop.hour()){
+						if(lampA2 !== "on"){
+							var post  = {lampA2: 'on'};
+							connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+							});
+						}
+					}
+					else if(now.hour()==lampA2TimerStop.hour()){
+						if(now.minute()< lampA2TimerStop.minute()){
+							if(lampA2 !== "on"){
+								var post  = {lampA2: 'on'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampA2TimerStop.minute()){
+							if(lampA2 !== "off"){
+								var post  = {lampA2: 'off'};
+								connection.query('UPDATE tbl_room_a SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+				}
             }
             else if(now.hour() > lampA2TimerStop.hour()){
                 if(lampA2 !== "off"){
@@ -509,27 +580,63 @@ function timerRoomB(data){
                 }
             }
             else if(now.hour() >= lampB1TimerStart.hour() && now.hour() <= lampB1TimerStop.hour()){
-                if(now.minute() >= lampB1TimerStart.minute() && now.minute() < lampB1TimerStop.minute()){
-                    if(lampB1 !== "on"){
-                        var post  = {lampB1: 'on'};
-                        connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() < lampB1TimerStart.minute()){
-                    if(lampB1 !== "off"){
-                        var post  = {lampB1: 'off'};
-                        connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() >= lampB1TimerStop.minute()){
-                    if(lampB1 !== "off"){
-                        var post  = {lampB1: 'off'};
-                        connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
+                if(now.hour() <= lampB1TimerStop.hour()){
+					if(now.hour() == lampB1TimerStart.hour() && lampB1TimerStop.hour()==lampB1TimerStart.hour()){
+						if(now.minute() >= lampB1TimerStart.minute() && now.minute() < lampB1TimerStop.minute()){
+							if(lampB1 !== "on"){
+								var post  = {lampB1: 'on'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampB1TimerStop.minute()){
+							if(lampB1 !== "off"){
+								var post  = {lampB1: 'off'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() == lampB1TimerStart.hour() && lampB1TimerStop.hour()-lampB1TimerStart.hour()==1){
+						if(now.minute()>= lampB1TimerStart.minute()){
+							if(lampB1 !== "on"){
+								var post  = {lampB1: 'on'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.hour()==lampB1TimerStop.hour() && now.minute() >= lampB1TimerStop.minute()){
+							if(lampB1 !== "off"){
+								var post  = {lampB1: 'off'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() < lampB1TimerStop.hour()){
+						if(lampB1 !== "on"){
+							var post  = {lampB1: 'on'};
+							connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+							});
+						}
+					}
+					else if(now.hour()==lampB1TimerStop.hour()){
+						if(now.minute()< lampB1TimerStop.minute()){
+							if(lampB1 !== "on"){
+								var post  = {lampB1: 'on'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampB1TimerStop.minute()){
+							if(lampB1 !== "off"){
+								var post  = {lampB1: 'off'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+				}
             }
             else if(now.hour() > lampB1TimerStop.hour()){
                 if(lampB1 !== "off"){
@@ -661,27 +768,63 @@ function timerRoomB(data){
                 }
             }
             else if(now.hour() >= lampB2TimerStart.hour() && now.hour() <= lampB2TimerStop.hour()){
-                if(now.minute() >= lampB2TimerStart.minute() && now.minute() < lampB2TimerStop.minute()){
-                    if(lampB2 !== "on"){
-                        var post  = {lampB2: 'on'};
-                        connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() < lampB2TimerStart.minute()){
-                    if(lampB2 !== "off"){
-                        var post  = {lampB2: 'off'};
-                        connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() >= lampB2TimerStop.minute()){
-                    if(lampB2 !== "off"){
-                        var post  = {lampB2: 'off'};
-                        connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
+                if(now.hour() <= lampB2TimerStop.hour()){
+					if(now.hour() == lampB2TimerStart.hour() && lampB2TimerStop.hour()==lampB2TimerStart.hour()){
+						if(now.minute() >= lampB2TimerStart.minute() && now.minute() < lampB2TimerStop.minute()){
+							if(lampB2 !== "on"){
+								var post  = {lampB2: 'on'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampB2TimerStop.minute()){
+							if(lampB2 !== "off"){
+								var post  = {lampB2: 'off'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() == lampB2TimerStart.hour() && lampB2TimerStop.hour()-lampB2TimerStart.hour()==1){
+						if(now.minute()>= lampB2TimerStart.minute()){
+							if(lampB2 !== "on"){
+								var post  = {lampB2: 'on'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.hour()==lampB2TimerStop.hour() && now.minute() >= lampB2TimerStop.minute()){
+							if(lampB2 !== "off"){
+								var post  = {lampB2: 'off'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() < lampB2TimerStop.hour()){
+						if(lampB2 !== "on"){
+							var post  = {lampB2: 'on'};
+							connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+							});
+						}
+					}
+					else if(now.hour()==lampB2TimerStop.hour()){
+						if(now.minute()< lampB2TimerStop.minute()){
+							if(lampB2 !== "on"){
+								var post  = {lampB2: 'on'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampB2TimerStop.minute()){
+							if(lampB2 !== "off"){
+								var post  = {lampB2: 'off'};
+								connection.query('UPDATE tbl_room_b SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+				}
             }
             else if(now.hour() > lampB2TimerStop.hour()){
                 if(lampB2 !== "off"){
@@ -816,27 +959,63 @@ function timerRoomC(data){
                 }
             }
             else if(now.hour() >= lampC1TimerStart.hour() && now.hour() <= lampC1TimerStop.hour()){
-                if(now.minute() >= lampC1TimerStart.minute() && now.minute() < lampC1TimerStop.minute()){
-                    if(lampC1 !== "on"){
-                        var post  = {lampC1: 'on'};
-                        connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() < lampC1TimerStart.minute()){
-                    if(lampC1 !== "off"){
-                        var post  = {lampC1: 'off'};
-                        connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() >= lampC1TimerStop.minute()){
-                    if(lampC1 !== "off"){
-                        var post  = {lampC1: 'off'};
-                        connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
+                if(now.hour() <= lampC1TimerStop.hour()){
+					if(now.hour() == lampC1TimerStart.hour() && lampC1TimerStop.hour()==lampC1TimerStart.hour()){
+						if(now.minute() >= lampC1TimerStart.minute() && now.minute() < lampC1TimerStop.minute()){
+							if(lampC1 !== "on"){
+								var post  = {lampC1: 'on'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampC1TimerStop.minute()){
+							if(lampC1 !== "off"){
+								var post  = {lampC1: 'off'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() == lampC1TimerStart.hour() && lampC1TimerStop.hour()-lampC1TimerStart.hour()==1){
+						if(now.minute()>= lampC1TimerStart.minute()){
+							if(lampC1 !== "on"){
+								var post  = {lampC1: 'on'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.hour()==lampC1TimerStop.hour() && now.minute() >= lampC1TimerStop.minute()){
+							if(lampC1 !== "off"){
+								var post  = {lampC1: 'off'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() < lampC1TimerStop.hour()){
+						if(lampC1 !== "on"){
+							var post  = {lampC1: 'on'};
+							connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+							});
+						}
+					}
+					else if(now.hour()==lampC1TimerStop.hour()){
+						if(now.minute()< lampC1TimerStop.minute()){
+							if(lampC1 !== "on"){
+								var post  = {lampC1: 'on'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampC1TimerStop.minute()){
+							if(lampC1 !== "off"){
+								var post  = {lampC1: 'off'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+				}
             }
             else if(now.hour() > lampC1TimerStop.hour()){
                 if(lampC1 !== "off"){
@@ -967,27 +1146,63 @@ function timerRoomC(data){
                 }
             }
             else if(now.hour() >= lampC2TimerStart.hour() && now.hour() <= lampC2TimerStop.hour()){
-                if(now.minute() >= lampC2TimerStart.minute() && now.minute() < lampC2TimerStop.minute()){
-                    if(lampC2 !== "on"){
-                        var post  = {lampC2: 'on'};
-                        connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() < lampC2TimerStart.minute()){
-                    if(lampC2 !== "off"){
-                        var post  = {lampC2: 'off'};
-                        connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() >= lampC2TimerStop.minute()){
-                    if(lampC2 !== "off"){
-                        var post  = {lampC2: 'off'};
-                        connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
+                if(now.hour() <= lampC2TimerStop.hour()){
+					if(now.hour() == lampC2TimerStart.hour() && lampC2TimerStop.hour()==lampC2TimerStart.hour()){
+						if(now.minute() >= lampC2TimerStart.minute() && now.minute() < lampC2TimerStop.minute()){
+							if(lampC2 !== "on"){
+								var post  = {lampC2: 'on'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampC2TimerStop.minute()){
+							if(lampC2 !== "off"){
+								var post  = {lampC2: 'off'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() == lampC2TimerStart.hour() && lampC2TimerStop.hour()-lampC2TimerStart.hour()==1){
+						if(now.minute()>= lampC2TimerStart.minute()){
+							if(lampC2 !== "on"){
+								var post  = {lampC2: 'on'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.hour()==lampC2TimerStop.hour() && now.minute() >= lampC2TimerStop.minute()){
+							if(lampC2 !== "off"){
+								var post  = {lampC2: 'off'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() < lampC2TimerStop.hour()){
+						if(lampC2 !== "on"){
+							var post  = {lampC2: 'on'};
+							connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+							});
+						}
+					}
+					else if(now.hour()==lampC2TimerStop.hour()){
+						if(now.minute()< lampC2TimerStop.minute()){
+							if(lampC2 !== "on"){
+								var post  = {lampC2: 'on'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampC2TimerStop.minute()){
+							if(lampC2 !== "off"){
+								var post  = {lampC2: 'off'};
+								connection.query('UPDATE tbl_room_c SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+				}
             }
             else if(now.hour() > lampC2TimerStop.hour()){
                 if(lampC2 !== "off"){
@@ -1122,27 +1337,63 @@ function timerRoomD(data){
                 }
             }
             else if(now.hour() >= lampD1TimerStart.hour() && now.hour() <= lampD1TimerStop.hour()){
-                if(now.minute() >= lampD1TimerStart.minute() && now.minute() < lampD1TimerStop.minute()){
-                    if(lampD1 !== "on"){
-                        var post  = {lampD1: 'on'};
-                        connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() < lampD1TimerStart.minute()){
-                    if(lampD1 !== "off"){
-                        var post  = {lampD1: 'off'};
-                        connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() >= lampD1TimerStop.minute()){
-                    if(lampD1 !== "off"){
-                        var post  = {lampD1: 'off'};
-                        connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
+                if(now.hour() <= lampD1TimerStop.hour()){
+					if(now.hour() == lampD1TimerStart.hour() && lampD1TimerStop.hour()==lampD1TimerStart.hour()){
+						if(now.minute() >= lampD1TimerStart.minute() && now.minute() < lampD1TimerStop.minute()){
+							if(lampD1 !== "on"){
+								var post  = {lampD1: 'on'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampD1TimerStop.minute()){
+							if(lampD1 !== "off"){
+								var post  = {lampD1: 'off'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() == lampD1TimerStart.hour() && lampD1TimerStop.hour()-lampD1TimerStart.hour()==1){
+						if(now.minute()>= lampD1TimerStart.minute()){
+							if(lampD1 !== "on"){
+								var post  = {lampD1: 'on'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.hour()==lampD1TimerStop.hour() && now.minute() >= lampD1TimerStop.minute()){
+							if(lampD1 !== "off"){
+								var post  = {lampD1: 'off'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() < lampD1TimerStop.hour()){
+						if(lampD1 !== "on"){
+							var post  = {lampD1: 'on'};
+							connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+							});
+						}
+					}
+					else if(now.hour()==lampD1TimerStop.hour()){
+						if(now.minute()< lampD1TimerStop.minute()){
+							if(lampD1 !== "on"){
+								var post  = {lampD1: 'on'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampD1TimerStop.minute()){
+							if(lampD1 !== "off"){
+								var post  = {lampD1: 'off'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+				}
             }
             else if(now.hour() > lampD1TimerStop.hour()){
                 if(lampD1 !== "off"){
@@ -1274,27 +1525,63 @@ function timerRoomD(data){
                 }
             }
             else if(now.hour() >= lampD2TimerStart.hour() && now.hour() <= lampD2TimerStop.hour()){
-                if(now.minute() >= lampD2TimerStart.minute() && now.minute() < lampD2TimerStop.minute()){
-                    if(lampD2 !== "on"){
-                        var post  = {lampD2: 'on'};
-                        connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() < lampD2TimerStart.minute()){
-                    if(lampD2 !== "off"){
-                        var post  = {lampD2: 'off'};
-                        connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
-                else if(now.minute() >= lampD2TimerStop.minute()){
-                    if(lampD2 !== "off"){
-                        var post  = {lampD2: 'off'};
-                        connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
-                        });
-                    }
-                }
+                if(now.hour() <= lampD2TimerStop.hour()){
+					if(now.hour() == lampD2TimerStart.hour() && lampD2TimerStop.hour()==lampD2TimerStart.hour()){
+						if(now.minute() >= lampD2TimerStart.minute() && now.minute() < lampD2TimerStop.minute()){
+							if(lampD2 !== "on"){
+								var post  = {lampD2: 'on'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampD2TimerStop.minute()){
+							if(lampD2 !== "off"){
+								var post  = {lampD2: 'off'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() == lampD2TimerStart.hour() && lampD2TimerStop.hour()-lampD2TimerStart.hour()==1){
+						if(now.minute()>= lampD2TimerStart.minute()){
+							if(lampD2 !== "on"){
+								var post  = {lampD2: 'on'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.hour()==lampD2TimerStop.hour() && now.minute() >= lampD2TimerStop.minute()){
+							if(lampD2 !== "off"){
+								var post  = {lampD2: 'off'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+					else if(now.hour() < lampD2TimerStop.hour()){
+						if(lampD2 !== "on"){
+							var post  = {lampD2: 'on'};
+							connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+							});
+						}
+					}
+					else if(now.hour()==lampD2TimerStop.hour()){
+						if(now.minute()< lampD2TimerStop.minute()){
+							if(lampD2 !== "on"){
+								var post  = {lampD2: 'on'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+						else if(now.minute() >= lampD2TimerStop.minute()){
+							if(lampD2 !== "off"){
+								var post  = {lampD2: 'off'};
+								connection.query('UPDATE tbl_room_d SET ? WHERE `id` = 1', post, function(err, result) {
+								});
+							}
+						}
+					}
+				}
             }
             else if(now.hour() > lampD2TimerStop.hour()){
                 if(lampD2 !== "off"){
