@@ -38,6 +38,7 @@ return array(
                 'roomC',
                 'roomD',
                 'api',
+                'admin',
 		// uncomment the following to enable the Gii tool
 		
 		'gii'=>array(

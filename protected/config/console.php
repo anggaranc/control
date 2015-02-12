@@ -23,6 +23,7 @@ return array(
                 'roomB',
                 'roomC',
                 'roomD',
+                'admin',
 	),
 	// application components
 	'components'=>array(

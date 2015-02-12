@@ -87,7 +87,7 @@ Yii::app()->clientScript->registerScript('jsconf',
 				<ul class="nav navbar-nav">
       				<li class="<?php echo $route === 'site/index' ? 'active' : ''; ?>"><a href="<?php echo Yii::app()->getBaseUrl(true); ?>">Home</a></li>
                                     <?php if (!Yii::app()->user->isGuest): ?>
-                                    <li class="dropdown <?php echo in_array($module, array('roomA','roomB','roomC','roomD')) ? 'active' : ''; ?>">
+                                    <li class="dropdown <?php echo in_array($module, array('roomA','roomB','roomC','roomD','admin')) ? 'active' : ''; ?>">
                                         <a href="#" class="dropdown-toggle room" data-toggle="dropdown">Room <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                                 <?php if (isset($privileges[RoomA::PRIVILEGE_ROOM])): ?>
@@ -101,6 +101,9 @@ Yii::app()->clientScript->registerScript('jsconf',
                                                 <?php endif; ?>
                                                 <?php if (isset($privileges[RoomD::PRIVILEGE_ROOM])): ?>
                                                 <li><a class="roomD" href="<?php echo Yii::app()->createUrl('roomD'); ?>">Room D</a></li>
+                                                <?php endif; ?>
+                                                <?php if (isset($privileges[User::PRIVILEGE_VIEW])): ?>
+                                                <li><a class="admin" href="<?php echo Yii::app()->createUrl('admin'); ?>">Room Admin</a></li>
                                                 <?php endif; ?>
                                         </ul>
                                     </li>
